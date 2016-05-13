@@ -11,6 +11,8 @@ import blackBeardsDread.model.Location;
 import blackBeardsDread.model.Map;
 import blackBeardsDread.model.Sea;
 import blackBeardsDread.model.Ship;
+import blackBeardsDread.model.Player;
+import blackBeardsDread.model.Inventory;
 
 /**
  *
@@ -71,5 +73,21 @@ public class BlackbeardsDread {
             
             String seaInfo = sea1.toString();
             System.out.println(seaInfo);
+            
+        Player player1 = new Player();
+            player1.setName("Frederico");
+            player1.setCoveName("Frederico's Cove");
+            
+            String playerInfo = player1.toString();
+            System.out.println(playerInfo);
+            
+        Inventory inventory1 = new Inventory();
+            inventory1.setFood(23);
+            inventory1.setWater(12);
+            inventory1.setGold(325);
+            
+            String inventoryInfo = inventory1.toString();
+            System.out.println(inventoryInfo);
+            
     }
 }

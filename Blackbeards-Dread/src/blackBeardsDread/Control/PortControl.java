@@ -27,4 +27,22 @@ public class PortControl {
         
         return $desiredWater;
     }
+    
+    public double purchaseFood(double $food, double $gold, double $desiredFood, double $foodPrice) {
+        if ($desiredFood < 0 || $desiredFood > 10){
+            return -1;
+        }
+        
+        if ($gold < ($desiredFood * $foodPrice)) {
+            return -2;
+        }
+        
+        double $newFoodTotal = $food + $desiredFood;
+        
+        if ($newFoodTotal > 100) {
+            return -3;
+        }
+        
+        return $desiredFood;
+    }
 }

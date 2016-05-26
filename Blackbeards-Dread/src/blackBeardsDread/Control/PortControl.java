@@ -45,4 +45,23 @@ public class PortControl {
         
         return $desiredFood;
     }
+    
+    public double purchaseArmory(double $weapons, double $gold, double $desiredWeapons, double $weaponsPrice) {
+        if ($desiredWeapons < 0 || $desiredWeapons > 10){
+            return -1;
+        }
+        
+        if ($gold < ($desiredWeapons * $weaponsPrice)) {
+            return -2;
+        }
+        
+        double $newWeaponsTotal = $weapons + $desiredWeapons;
+        
+        if ($newWeaponsTotal > 100) {
+            return -3;
+        }
+        
+        return $desiredWeapons;
+    }
 }
+

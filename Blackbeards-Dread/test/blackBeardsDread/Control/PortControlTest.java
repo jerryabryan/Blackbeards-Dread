@@ -238,5 +238,95 @@ public class PortControlTest {
         result = instance.purchaseWater($food, $gold, $desiredFood, $foodPrice);
         assertEquals(expResult, result, 0.0);
     }
-    
+
+    /**
+     * Test of purchaseArmory method, of class PortControl.
+     */
+    @Test
+    public void testPurchaseArmory() {
+        System.out.println("purchaseArmory");
+        System.out.println("\t Test case #1");
+        
+        /************************
+            * Test Case #1
+        ************************/
+        double $weapons = 9;
+        double $gold = 100;
+        double $desiredWeapons = 1;
+        double $weaponsPrice = 50;
+        PortControl instance = new PortControl();
+        double expResult = 1;
+        double result = instance.purchaseArmory($weapons, $gold, $desiredWeapons, $weaponsPrice);
+        assertEquals(expResult, result, 0.0);
+        
+        /************************
+            * Test Case #2
+        ************************/
+        System.out.println("\t Test case #2");
+        
+        $weapons = 9;
+        $gold = 100;
+        $desiredWeapons = -2;
+        $weaponsPrice = 50;
+        PortControl instance2 = new PortControl();
+        expResult = -1;
+        result = instance.purchaseArmory($weapons, $gold, $desiredWeapons, $weaponsPrice);
+        assertEquals(expResult, result, 0.0);
+        
+        /************************
+            * Test Case #3
+        ************************/
+        System.out.println("\t Test case #3");
+        
+        $weapons = 9;
+        $gold = 100;
+        $desiredWeapons = 11;
+        $weaponsPrice = 50;
+        PortControl instance3 = new PortControl();
+        expResult = -1;
+        result = instance.purchaseArmory($weapons, $gold, $desiredWeapons, $weaponsPrice);
+        assertEquals(expResult, result, 0.0);
+        
+        /************************
+            * Test Case #4
+        ************************/
+        System.out.println("\t Test case #4");
+        
+        $weapons = 9;
+        $gold =24;
+        $desiredWeapons = 5;
+        $weaponsPrice = 50;
+        PortControl instance4 = new PortControl();
+        expResult = -2;
+        result = instance.purchaseArmory($weapons, $gold, $desiredWeapons, $weaponsPrice);
+        assertEquals(expResult, result, 0.0);
+        
+        /************************
+            * Test Case #5
+        ************************/
+        System.out.println("\t Test case #5");
+        
+        $weapons = 9;
+        $gold = 52;
+        $desiredWeapons = 1;
+        $weaponsPrice = 50;
+        PortControl instance5 = new PortControl();
+        expResult = 1;
+        result = instance.purchaseArmory($weapons, $gold, $desiredWeapons, $weaponsPrice);
+        assertEquals(expResult, result, 0.0);
+        
+        /************************
+            * Test Case #6
+        ************************/
+        System.out.println("\t Test case #6");
+        
+        $weapons = 9;
+        $gold = 500;
+        $desiredWeapons = 0;
+        $weaponsPrice = 50;
+        PortControl instance6 = new PortControl();
+        expResult = 0;
+        result = instance.purchaseArmory($weapons, $gold, $desiredWeapons, $weaponsPrice);
+        assertEquals(expResult, result, 0.0);
+    }
 }

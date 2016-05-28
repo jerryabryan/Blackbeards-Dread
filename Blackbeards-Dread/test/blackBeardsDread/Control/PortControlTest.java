@@ -151,7 +151,7 @@ public class PortControlTest {
         double $foodPrice = 5;
         PortControl instance = new PortControl();
         double expResult = 4;
-        double result = instance.purchaseWater($food, $gold, $desiredFood, $foodPrice);
+        double result = instance.purchaseFood($food, $gold, $desiredFood, $foodPrice);
         assertEquals(expResult, result, 0.0);
         
         /************************
@@ -165,7 +165,7 @@ public class PortControlTest {
         $foodPrice = 5;
         PortControl instance2 = new PortControl();
         expResult = -1;
-        result = instance.purchaseWater($food, $gold, $desiredFood, $foodPrice);
+        result = instance.purchaseFood($food, $gold, $desiredFood, $foodPrice);
         assertEquals(expResult, result, 0.0);
         
         /************************
@@ -179,7 +179,7 @@ public class PortControlTest {
         $foodPrice = 5;
         PortControl instance3 = new PortControl();
         expResult = -1;
-        result = instance.purchaseWater($food, $gold, $desiredFood, $foodPrice);
+        result = instance.purchaseFood($food, $gold, $desiredFood, $foodPrice);
         assertEquals(expResult, result, 0.0);
         
         /************************
@@ -193,7 +193,7 @@ public class PortControlTest {
         $foodPrice = 5;
         PortControl instance4 = new PortControl();
         expResult = -2;
-        result = instance.purchaseWater($food, $gold, $desiredFood, $foodPrice);
+        result = instance.purchaseFood($food, $gold, $desiredFood, $foodPrice);
         assertEquals(expResult, result, 0.0);
         
         /************************
@@ -207,7 +207,7 @@ public class PortControlTest {
         $foodPrice = 5;
         PortControl instance5 = new PortControl();
         expResult = -3;
-        result = instance.purchaseWater($food, $gold, $desiredFood, $foodPrice);
+        result = instance.purchaseFood($food, $gold, $desiredFood, $foodPrice);
         assertEquals(expResult, result, 0.0);
         
         /************************
@@ -221,7 +221,7 @@ public class PortControlTest {
         $foodPrice = 5;
         PortControl instance6 = new PortControl();
         expResult = 0;
-        result = instance.purchaseWater($food, $gold, $desiredFood, $foodPrice);
+        result = instance.purchaseFood($food, $gold, $desiredFood, $foodPrice);
         assertEquals(expResult, result, 0.0);
     
         /************************
@@ -235,7 +235,7 @@ public class PortControlTest {
         $foodPrice = 5;
         PortControl instance7 = new PortControl();
         expResult = 10;
-        result = instance.purchaseWater($food, $gold, $desiredFood, $foodPrice);
+        result = instance.purchaseFood($food, $gold, $desiredFood, $foodPrice);
         assertEquals(expResult, result, 0.0);
     }
 

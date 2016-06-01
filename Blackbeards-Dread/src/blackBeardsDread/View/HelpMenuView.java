@@ -4,40 +4,38 @@
  * and open the template in the editor.
  */
 package blackBeardsDread.View;
-import blackBeardsDread.Control.GameControl;
-import blackbeards.dread.BlackbeardsDread;
 import java.util.Scanner;
-
 
 /**
  *
  * @author jkbry
  */
-public class MainMenuView {
-    
+class HelpMenuView {
+
     private String menu;
     
-    public MainMenuView() {
+    public HelpMenuView() {
         this.menu = "\n"
                   + "\n----------------------------"
-                  + "\n| Main Menu                |"
+                  + "\n| Help Menu                |"
                   + "\n----------------------------"
-                  + "\nN - Start New Game"
-                  + "\nG - Load Saved Game"
-                  + "\nH - Gameplay Help"
-                  + "\nS - Save Game"
-                  + "\nQ - Quit Game"
+                  + "\nG - Goal of the game"
+                  + "\nM - How to move"
+                  + "\nR - What are the resources available"
+                  + "\nU - How to use available resources"
+                  + "\nT - Tips"
+                  + "\nQ - Quit to main menu"
                   + "\n----------------------------";
     }
     
-    void displayMainMenuView() {
+    void displayHelpMenuView() {
         
         boolean done = false; // set flat to not done
         do {
             //prompt for and get player name
             String menuOption = this.getMenuOption();
             if (menuOption.toUpperCase().equals("Q")) // User wants to quit
-                return; // exit game
+                return; // return to main menu
             
             // do the requested action and dispaly the next view
             done = this.doAction(menuOption);
@@ -74,46 +72,47 @@ public class MainMenuView {
         choice = choice.toUpperCase();
         
         switch (choice) {
-            case "N": //New Game
-                this.startNewGame();
+            case "G": //Goal of the game
+                this.goalOfGame();
                 break;
-            case "G": //Load Saved Game
-                this.startExistingGame();
+            case "M": //How to move
+                this.howToMove();
                 break;
-            case "H": //Display Help Menu
-                this.displayHelpMenu();
+            case "R": //Resources available
+                this.resourcesAvailable();
                 break;
-            case "S": //Save current game
-                this.saveGame();
+            case "U": //How to use available resources
+                this.howToUseResources();
+                break;
+            case "T": //Tips
+                this.helpTips();
                 break;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
         }
 
         return false;
-    }
-
-    private void startNewGame() {
-            // create a new game
-        GameControl.createNewGame(BlackbeardsDread.getPlayer());
     
-        // display game menu
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
     }
 
-    private void startExistingGame() {
-        System.out.println("*** startExistingGame function called ***");
+    private void goalOfGame() {
+        System.out.println("\n*** goalOfGame() called *** Try again");
     }
 
-    private void displayHelpMenu() {
-        // display help menu
-        HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayHelpMenuView();
+    private void howToMove() {
+        System.out.println("\n*** howToMove() called *** Try again");
     }
 
-    private void saveGame() {
-        System.out.println("*** saveGame function called ***");
+    private void resourcesAvailable() {
+        System.out.println("\n*** resourcesAvailable() called *** Try again");
+    }
+
+    private void howToUseResources() {
+        System.out.println("\n*** howToUseResources() called *** Try again");
+    }
+
+    private void helpTips() {
+        System.out.println("\n*** helpTips() called *** Try again");
     }
     
 }

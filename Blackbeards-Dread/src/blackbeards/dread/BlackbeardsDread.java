@@ -6,14 +6,8 @@
 package blackbeards.dread;
 
 import blackBeardsDread.View.StartProgramView;
-import blackBeardsDread.model.Battle;
 import blackBeardsDread.model.Game;
-import blackBeardsDread.model.Location;
-import blackBeardsDread.model.Map;
-import blackBeardsDread.model.Sea;
-import blackBeardsDread.model.Ship;
 import blackBeardsDread.model.Player;
-import blackBeardsDread.model.Inventory;
 
 /**
  *
@@ -21,14 +15,29 @@ import blackBeardsDread.model.Inventory;
  */
 public class BlackbeardsDread {
 
-    /**
-     * @param args the command line arguments
-     */
+    private static Game currentGame = null;
+    private static Player player = null;
+    
     public static void main(String[] args) {
         
-     StartProgramView startProgramView = new StartProgramView();
-     startProgramView.displayStartProgramView();
-       
-        
+    StartProgramView startProgramView = new StartProgramView();
+    startProgramView.displayStartProgramView();
+    
+    }
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        BlackbeardsDread.currentGame = currentGame;
+    }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        BlackbeardsDread.player = player;
     }
 }

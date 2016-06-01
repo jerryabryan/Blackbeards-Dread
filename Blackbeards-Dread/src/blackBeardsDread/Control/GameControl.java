@@ -6,6 +6,7 @@
 package blackBeardsDread.Control;
 
 import blackBeardsDread.model.Player;
+import blackbeards.dread.BlackbeardsDread;
 
 /**
  *
@@ -13,9 +14,16 @@ import blackBeardsDread.model.Player;
  */
 public class GameControl {
 
-    public static Player createPlayer(String playersName) {
-        System.out.println("\n*** createplayer() function called ***");
-        return new Player();
+    public static Player createPlayer(String name) {
+        if (name == null) {
+            return null;
+        }
+        
+        Player player = new Player();
+        player.setName(name); 
+        
+        BlackbeardsDread.setPlayer(player); //save the player
+        
+        return player;
     }
-    
 }

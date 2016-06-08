@@ -6,6 +6,7 @@
 package blackbeards.dread;
 
 import blackBeardsDread.View.BattleSequenceView;
+import blackBeardsDread.View.MoveLocationView;
 import blackBeardsDread.View.StartProgramView;
 import blackBeardsDread.model.Game;
 import blackBeardsDread.model.Player;
@@ -21,8 +22,11 @@ public class BlackbeardsDread {
     
     public static void main(String[] args) {
         
-    BattleSequenceView battleSequenceView = new BattleSequenceView();
-    battleSequenceView.displayBattleSequenceView();    
+    MoveLocationView moveLocationView = new MoveLocationView();
+    moveLocationView.displayMoveLocationView(0);
+            
+        
+        
     }
 
     public static Game getCurrentGame() {

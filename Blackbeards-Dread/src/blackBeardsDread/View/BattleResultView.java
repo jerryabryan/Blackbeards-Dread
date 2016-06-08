@@ -31,6 +31,7 @@ public class BattleResultView {
             default:
                 System.out.println("\n*** Display Error in Battle Result ***");
         }
+       
     }
 
     private void successMessage() {
@@ -39,10 +40,16 @@ public class BattleResultView {
 
     private void lossMessage() {
         System.out.println("\n*** You Lost! ***");
+        StartProgramView startProgramView = new StartProgramView();
+        startProgramView.displayStartProgramView();
     }
 
     private void returnToCove() {
         System.out.println("\n*** You successfully fleed to Dead Reef Cove!***");
+        ArrivalView arrivalView = new ArrivalView();
+        arrivalView.displayArrivalView(0);
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayMenu();
     }
 
 }

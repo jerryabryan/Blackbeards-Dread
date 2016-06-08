@@ -75,19 +75,21 @@ public class BattleSequenceView {
     private boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
-        
+        boolean done = false;
         switch (choice) {
             case "F": //Fire cannons
                 this.fireCannnons();
+                done = true;
                 break;
             case "R": //Run back to Dead Reef Cove
                 this.runToCove();
+                done = true;
                 break;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
         }
 
-        return false;
+        return done;
     }
     
     private void fireCannnons() {

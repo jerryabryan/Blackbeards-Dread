@@ -14,26 +14,26 @@ import java.util.Objects;
 public class Sea implements Serializable{
     
     //class instance variables
-    private String startLocation;
-    private String endLocation;
+    private int startLocation;
+    private int endLocation;
 
     public Sea() {
     }
     
 
-    public String getStartLocation() {
+    public int getStartLocation() {
         return startLocation;
     }
 
-    public void setStartLocation(String startLocation) {
+    public void setStartLocation(int startLocation) {
         this.startLocation = startLocation;
     }
 
-    public String getEndLocation() {
+    public int getEndLocation() {
         return endLocation;
     }
 
-    public void setEndLocation(String endLocation) {
+    public void setEndLocation(int endLocation) {
         this.endLocation = endLocation;
     }
 

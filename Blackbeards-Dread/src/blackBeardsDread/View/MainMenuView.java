@@ -39,7 +39,7 @@ public class MainMenuView {
             if (menuOption.toUpperCase().equals("Q")) // User wants to quit
                 return; // exit game
             
-            // do the requested action and dispaly the next view
+            // do the requested action and display the next view
             done = this.doAction(menuOption);
             
         } while(!done);

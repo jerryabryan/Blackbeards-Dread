@@ -5,6 +5,7 @@
  */
 package blackbeards.dread;
 
+import blackBeardsDread.View.BattleSequenceView;
 import blackBeardsDread.View.StartProgramView;
 import blackBeardsDread.model.Game;
 import blackBeardsDread.model.Player;
@@ -20,9 +21,8 @@ public class BlackbeardsDread {
     
     public static void main(String[] args) {
         
-    StartProgramView startProgramView = new StartProgramView();
-    startProgramView.displayStartProgramView();
-    
+    BattleSequenceView battleSequenceView = new BattleSequenceView();
+    battleSequenceView.displayBattleSequenceView();    
     }
 
     public static Game getCurrentGame() {

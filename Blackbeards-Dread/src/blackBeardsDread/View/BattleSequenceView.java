@@ -5,17 +5,19 @@
  */
 package blackBeardsDread.View;
 
+import blackBeardsDread.Control.BattleControl;
 import java.util.Scanner;
 
 /**
  *
  * @author jkbry
  */
-public class BattleSequence {
+public class BattleSequenceView {
     
     private String menu;
     
-    public BattleSequence() {
+    public BattleSequenceView() {
+        
         this.menu = "\n"
                   + "\n--------------------------------"
                   + "\n| Battle Menu                   |"
@@ -23,15 +25,37 @@ public class BattleSequence {
                   + "\nF - Fire"
                   + "\nR - Run back to Dead Reef Cove"
                   + "\n--------------------------------";
+        
     }
     
-        private String getMenuOption() {
+    public void displayBattleSequenceView() {
+
+        double enemyHealth = BattleControl.startEnemyHealth();
+        double enemyLevel = BattleControl.startEnemyLevel();
+        double playerHealth = BattleControl.startPlayerHealth();
+        
+        boolean done = false; // set flat to not done
+        do {
+            //prompt for option input
+            String menuOption = this.getMenuOption(enemyHealth, enemyLevel, playerHealth);
+            if (menuOption.toUpperCase().equals("Q")) // User wants to quit
+                return; // exit game
+            
+            // do the requested action and display the next view
+            done = this.doAction(menuOption);
+            
+        } while(!done);
+    
+    }
+       
+    private String getMenuOption(double enemyHealth, double enemyLevel, double playerHealth) {
         Scanner keyboard = new Scanner(System.in); 
         String value = "";
         boolean valid = false;
         
         while (!valid) {
             System.out.println(this.menu);
+            //display player health and enemy health/level          ************************************
             System.out.println("\nSelect a Menu Option");
             
             value = keyboard.nextLine();
@@ -48,7 +72,7 @@ public class BattleSequence {
         return value;
     }
         
-        private boolean doAction(String choice) {
+    private boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
         
@@ -65,13 +89,26 @@ public class BattleSequence {
 
         return false;
     }
-
+    
     private void fireCannnons() {
-        System.out.println("*** fireCannons function called ***");
+        BattleControl.fireCannons();
     }
 
     private void runToCove() {
-        System.out.println("*** runToCove function called ***");
+        BattleControl.runAway();
     }
-        
+    
 }
+
+
+/*
+
+
+    
+    
+    
+    Display Remaining Health
+
+
+
+*/

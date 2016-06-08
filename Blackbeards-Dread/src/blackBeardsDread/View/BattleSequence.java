@@ -67,9 +67,11 @@ public class BattleSequence {
     }
 
     private void fireCannnons() {
-        System.out.println("*** fireCannons function called ***");    }
+        System.out.println("*** fireCannons function called ***");
+    }
 
     private void runToCove() {
-        System.out.println("*** runToCove function called ***");    }
+        System.out.println("*** runToCove function called ***");
+    }
         
 }

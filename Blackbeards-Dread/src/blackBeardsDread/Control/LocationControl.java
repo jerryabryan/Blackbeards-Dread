@@ -14,11 +14,11 @@ import blackBeardsDread.model.Sea;
 public class LocationControl {
 
     public static Sea setCourse(int currentLocation, int i) {
-          Sea sea = new Sea();
-         sea.setStartLocation(currentLocation);
-         sea.setEndLocation(i);
+        Sea sea = new Sea();
+        sea.setStartLocation(currentLocation);
+        sea.setEndLocation(i);
          
-         return sea;
+        return sea;
          
     }
 

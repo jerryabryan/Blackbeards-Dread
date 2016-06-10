@@ -28,7 +28,6 @@ public class MoveLocationView {
                   + "\n3 - Port 3"
                   + "\n4 - Port 4"
                   + "\n5 - Port 5"
-                  + "\n6 - Port 6"
                   + "\nC - Cancel "
                   + "\n----------------------------";
        

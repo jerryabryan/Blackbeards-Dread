@@ -21,7 +21,7 @@ public class MoveLocationView {
     public MoveLocationView() {
         this.menu = "\n"
                   + "\n----------------------------"
-                  + "\n| Choose Desination        |"
+                  + "\n| Choose Destination        |"
                   + "\n----------------------------"
                   + "\n1 - Port 1"
                   + "\n2 - Port 2"
@@ -40,7 +40,7 @@ public class MoveLocationView {
 
     public void displayMoveLocationView(int currentLocation) {
         this.currentLocation = currentLocation;
-        boolean done = false; // set flat to not done
+        boolean done = false; // set flat to not done 
         do {
             
             String menuOption = this.getMenuOption();

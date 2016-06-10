@@ -21,7 +21,7 @@ public class MoveLocationView {
     public MoveLocationView() {
         this.menu = "\n"
                   + "\n----------------------------"
-                  + "\n| Choose Desination        |"
+                  + "\n| Choose Destination        |"
                   + "\n----------------------------"
                   + "\n1 - Port 1"
                   + "\n2 - Port 2"

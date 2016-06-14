@@ -9,6 +9,7 @@ import blackBeardsDread.View.BattleSequenceView;
 import blackBeardsDread.View.MoveLocationView;
 import blackBeardsDread.View.StartProgramView;
 import blackBeardsDread.model.Game;
+import blackBeardsDread.model.Map;
 import blackBeardsDread.model.Player;
 
 /**

@@ -98,8 +98,8 @@ public class MainMenuView {
         GameControl.createNewGame(BlackbeardsDread.getPlayer());
     
         // display game menu
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+        GameMenuView gameMenuView = new GameMenuView();
+        gameMenuView.displayGameMenuView();
     }
 
     private void startExistingGame() {

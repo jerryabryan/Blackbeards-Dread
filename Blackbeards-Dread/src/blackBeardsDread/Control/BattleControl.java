@@ -13,16 +13,12 @@ import blackBeardsDread.View.BattleResultView;
  */
 public class BattleControl {
 
-    public static void fireCannons() {
-        System.out.println("*** fireCannons function called ***");
-        BattleResultView battleResultView = new BattleResultView();
-        battleResultView.displayBattleResultView(1);
-    }
-
-    public static void runAway() {
+   
+    public static int runAway() {
         System.out.println("*** runAway function called ***");
         BattleResultView battleResultView = new BattleResultView();
         battleResultView.displayBattleResultView(3);
+        return 3;
     }
 
     public static double startEnemyHealth() {
@@ -38,6 +34,12 @@ public class BattleControl {
     public static double startPlayerHealth() {
         System.out.println("*** startPlayerHealth function called ***");
         return 20;
+    }
+
+    public static int fireCannons() {
+            BattleResultView battleResultView = new BattleResultView();
+        battleResultView.displayBattleResultView(1);
+        return 1;
     }
     
     

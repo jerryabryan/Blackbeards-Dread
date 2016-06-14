@@ -46,10 +46,8 @@ public class BattleResultView {
 
     private void returnToCove() {
         System.out.println("\n*** You successfully fleed to Dead Reef Cove!***");
-        ArrivalView arrivalView = new ArrivalView();
-        arrivalView.displayArrivalView(0);
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+        
+       
     }
 
 }

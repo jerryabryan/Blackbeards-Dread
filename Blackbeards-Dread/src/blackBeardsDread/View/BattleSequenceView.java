@@ -87,28 +87,38 @@ public class BattleSequenceView {
 //                break;
 //            default:
 //                System.out.println("\n*** Invalid Selection *** Try again");
-
+        boolean done = false;
         if ("F".equals(choice)) { //Fire Cannons
-            this.fireCannons();
+             done =  this.fireCannons();
         }
             
             else if ("R".equals(choice)) { //Run back to Dead Reef Cove
-                this.runToCove();
+              done =  this.runToCove();
             }
                     
             else {
                 System.out.println("\n*** Invalid Selection *** Try again");
             }
         
-        return false;
+        
+        return done;
     }
 
-    private void runToCove() {
-        BattleControl.runAway();
+    private boolean runToCove() {
+        int results = BattleControl.runAway();
+        if (results == 3) {
+            return true;
+            
+        } else
+            return false;
     }
 
-    private void fireCannons() {
-        BattleControl.fireCannons();
+    private boolean fireCannons() {
+        int results = BattleControl.fireCannons();
+        if (results == 1) {
+            return true;
+        } else
+            return false;
 
     }
     

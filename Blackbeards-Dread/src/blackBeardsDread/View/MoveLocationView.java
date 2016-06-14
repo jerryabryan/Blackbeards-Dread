@@ -81,19 +81,19 @@ public class MoveLocationView {
         switch (choice) {
             case "1": 
                 this.setCourse(1);
-                break;
+                return true;
             case "2": //Load Saved Game
                 this.setCourse(2);
-                break;
+                return true;
             case "3": //Display Help Menu
                 this.setCourse(3);
-                break;
+                return true;
             case "4": //Save current game
                this.setCourse(4);
-                break;
+                return true;
                 case "5": //Save current game
                this.setCourse(5);
-                break;
+                return true;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
         }
@@ -134,8 +134,9 @@ public class MoveLocationView {
         } while(!done);    
         ArrivalView arrivalView = new ArrivalView();
         arrivalView.displayArrivalView(i);
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+        //GameMenuView gameMenu = new GameMenuView();
+        //gameMenu.displayGameMenuView();
+        return;
     }
 
     private boolean setSail(String choice, int i) {

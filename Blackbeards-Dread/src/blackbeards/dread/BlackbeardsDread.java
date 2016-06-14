@@ -25,8 +25,8 @@ public class BlackbeardsDread {
     StartProgramView startProgramView = new StartProgramView();
     startProgramView.displayStartProgramView();
         
-  //  MoveLocationView moveLocationView = new MoveLocationView();
-  //  moveLocationView.displayMoveLocationView(0);
+//    MoveLocationView moveLocationView = new MoveLocationView();
+//    moveLocationView.displayMoveLocationView(0);
             
         
         

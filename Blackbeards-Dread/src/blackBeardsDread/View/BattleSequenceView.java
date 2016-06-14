@@ -75,29 +75,41 @@ public class BattleSequenceView {
     private boolean doAction(String choice) {
         
         choice = choice.toUpperCase();
-        boolean done = false;
-        switch (choice) {
-            case "F": //Fire cannons
-                this.fireCannnons();
-                done = true;
-                break;
-            case "R": //Run back to Dead Reef Cove
-                this.runToCove();
-                done = true;
-                break;
-            default:
-                System.out.println("\n*** Invalid Selection *** Try again");
-        }
+//        boolean done = false;
+//        switch (choice) {
+//            case "F": //Fire cannons
+//                this.fireCannnons();
+//                done = true;
+//                break;
+//            case "R": //Run back to Dead Reef Cove
+//                this.runToCove();
+//                done = true;
+//                break;
+//            default:
+//                System.out.println("\n*** Invalid Selection *** Try again");
 
-        return done;
-    }
-    
-    private void fireCannnons() {
-        BattleControl.fireCannons();
+        if ("F".equals(choice)) { //Fire Cannons
+            this.fireCannons();
+        }
+            
+            else if ("R".equals(choice)) { //Run back to Dead Reef Cove
+                this.runToCove();
+            }
+                    
+            else {
+                System.out.println("\n*** Invalid Selection *** Try again");
+            }
+        
+        return false;
     }
 
     private void runToCove() {
         BattleControl.runAway();
+    }
+
+    private void fireCannons() {
+        BattleControl.fireCannons();
+
     }
     
 }

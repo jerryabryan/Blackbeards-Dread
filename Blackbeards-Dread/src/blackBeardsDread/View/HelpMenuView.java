@@ -10,12 +10,12 @@ import java.util.Scanner;
  *
  * @author jkbry
  */
-class HelpMenuView {
+class HelpMenuView extends View {
 
-    private String menu;
+   
     
     public HelpMenuView() {
-        this.menu = "\n"
+        super("\n"
                   + "\n----------------------------"
                   + "\n| Help Menu                |"
                   + "\n----------------------------"
@@ -25,53 +25,15 @@ class HelpMenuView {
                   + "\nU - How to use available resources"
                   + "\nT - Tips"
                   + "\nQ - Quit to main menu"
-                  + "\n----------------------------";
-    }
-    
-    void displayHelpMenuView() {
-        
-        boolean done = false; // set flat to not done
-        do {
-            //prompt for and get player name
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("Q")) // User wants to quit
-                return; // return to main menu
-            
-            // do the requested action and dispaly the next view
-            done = this.doAction(menuOption);
-            
-        } while(!done);
-    
-    }   
-
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
-        
-        while (!valid) {
-            System.out.println(this.menu);
-            System.out.println("\nSelect a Menu Option");
-            
-            value = keyboard.nextLine();
-            value = value.trim();
-            
-            if (value.length() < 1) {
-                System.out.println("\nInvalid value: value can not be blank");
-                continue;
-            }
-            
-            break;
-        }
-        
-        return value;
+                  + "\n----------------------------");
     }
 
-    private boolean doAction(String choice) {
+    @Override
+    public boolean doAction(String value) {
         
-        choice = choice.toUpperCase();
+        value = value.toUpperCase();
         
-        switch (choice) {
+        switch (value) {
             case "G": //Goal of the game
                 this.goalOfGame();
                 break;

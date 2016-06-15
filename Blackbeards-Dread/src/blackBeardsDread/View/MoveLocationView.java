@@ -14,12 +14,12 @@ import java.util.Scanner;
  *
  * @author Evan
  */
-public class MoveLocationView {
-    private String menu;
+public class MoveLocationView extends View{
+  
     private int currentLocation;
     
     public MoveLocationView() {
-        this.menu = "\n"
+        super("\n"
                   + "\n----------------------------"
                   + "\n| Choose Destination        |"
                   + "\n----------------------------"
@@ -29,7 +29,7 @@ public class MoveLocationView {
                   + "\n4 - Port 4"
                   + "\n5 - Port 5"
                   + "\nC - Cancel "
-                  + "\n----------------------------";
+                  + "\n----------------------------");
        
     }
     //computer displays a message prompting the player to enter the desired location.
@@ -38,47 +38,12 @@ public class MoveLocationView {
     // the computer will move the player to the location.
     //if an enemey ship is encountered along the way, the player is stopped at the ship's location
 
-    public void displayMoveLocationView(int currentLocation) {
-        this.currentLocation = currentLocation;
-        boolean done = false; // set flat to not done 
-        do {
-            
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("C")) // User wants to quit
-                return; // exit game
-            
-            // do the requested action and dispaly the next view
-            done = this.doAction(menuOption);
-            
-        } while(!done);    }
-
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
-        
-        while (!valid) {
-            System.out.println(this.menu);
-            System.out.println("\nSelect a Menu Option");
-            
-            value = keyboard.nextLine();
-            value = value.trim();
-            
-            if (value.length() < 1) {
-                System.out.println("\nInvalid value: value can not be blank");
-                continue;
-            }
-            
-            break;
-        }
-        
-        return value;
-    }
-
-    private boolean doAction(String choice) {
-            choice = choice.toUpperCase();
-        
-        switch (choice) {
+    
+    @Override
+    public boolean doAction(String value) {
+            value = value.toUpperCase();
+        this.currentLocation = 0;
+        switch (value) {
             case "1": 
                 this.setCourse(1);
                 return true;
@@ -144,7 +109,7 @@ public class MoveLocationView {
        if ("Y".equals(choice)) {
           
            BattleSequenceView battleSequenceView = new BattleSequenceView();
-           battleSequenceView.displayBattleSequenceView();
+           battleSequenceView.display();
            return true;
        } else {
            return false;

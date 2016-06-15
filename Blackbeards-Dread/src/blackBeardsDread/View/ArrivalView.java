@@ -25,5 +25,4 @@ class ArrivalView {
         System.out.println("you are at port" + location);
         
     }
-    
 }

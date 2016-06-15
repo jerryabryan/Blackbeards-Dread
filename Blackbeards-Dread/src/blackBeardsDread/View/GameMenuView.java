@@ -11,12 +11,12 @@ import java.util.Scanner;
  *
  * @author jkbry
  */
-public class GameMenuView {
-    private final String menu;
+public class GameMenuView extends View {
+  
 
     
     public GameMenuView() {
-        this.menu = "\n"
+        super("\n"
                   + "\n----------------------------"
                   + "\n| Game Menu                |"
                   + "\n----------------------------"
@@ -26,54 +26,15 @@ public class GameMenuView {
                   + "\nP - Move Port Location"
                   + "\nI - Inventory"
                   + "\nQ - Back To Main Menu"
-                  + "\n----------------------------";
+                  + "\n----------------------------");
     }
     
-    void displayGameMenuView() {
-        
-        boolean done = false; // set flat to not done
-        do {
-            //prompt for and get player name
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("Q")) 
-                // User wants to quit
-                return; // exit game
-            
-            // do the requested action and display the next view
-            done = this.doAction(menuOption);
-            
-        } while(!done);
     
-    }   
-
-    private String getMenuOption() {
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
+    @Override
+    public boolean doAction(String value) {
+        value = value.toUpperCase();
         
-        while (!valid) {
-            System.out.println(this.menu);
-            System.out.println("\nSelect a Menu Option");
-            
-            value = keyboard.nextLine();
-            value = value.trim();
-            
-            if (value.length() < 1) {
-                System.out.println("\nInvalid value: value can not be blank");
-                continue;
-            }
-            
-            break;
-        }
-        
-        return value;
-    
-    }
-
-    private boolean doAction(String choice) {
-        choice = choice.toUpperCase();
-        
-        switch (choice) {
+        switch (value) {
             case "M": //map
                 this.map();
                 break;
@@ -85,7 +46,7 @@ public class GameMenuView {
                 break;
             case "P": //move port Location
                 MoveLocationView moveLocationView = new MoveLocationView();
-                moveLocationView.displayMoveLocationView(0);
+                moveLocationView.display();
                 break;
             case "I":
                 this.viewInventory();

@@ -10,8 +10,9 @@ package blackBeardsDread.View;
  * @author jkbry
  */
 public class BattleResultView {
+    private String result;
 
-    private final String result;
+
     
     public BattleResultView() {
         this.result = "\nBattle Results";

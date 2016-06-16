@@ -63,7 +63,11 @@ public class GameMenuView extends View {
     }
 
     private void purchaseSupplies() {
-       System.out.println("*** purchaseSupplies function called ***");
+      
+
+       PurchaseSupplies purchaseSupplies = new PurchaseSupplies("Water", 20);
+       purchaseSupplies.display();
+       
     }
 
     private void map() {

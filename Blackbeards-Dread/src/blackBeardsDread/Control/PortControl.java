@@ -10,6 +10,13 @@ package blackBeardsDread.Control;
  * @author jkbry
  */
 public class PortControl {
+
+    public static void purchase(String store, int cost) {
+       System.out.println("startPuchase function called");
+       
+    }
+    
+    
     public double purchaseWater(double water, double gold, double desiredWater, double waterPrice) {
         if (desiredWater < 0 || desiredWater > 10){
             return -1;

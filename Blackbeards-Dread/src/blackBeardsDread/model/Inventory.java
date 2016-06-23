@@ -14,40 +14,19 @@ import java.util.Objects;
  */
 public class Inventory implements Serializable{
     
-    private double food;
-    private double water;
-    private double gold;
+    private String inventoryType;
+    private double quantityInStock;
+    private double requiredAmount;
 
     public Inventory() {
-    }
-
-    public double getFood() {
-        return food;
-    }
-
-    public void setFood(double food) {
-        this.food = food;
-    }
-
-    public double getWater() {
-        return water;
-    }
-
-    public void setWater(double water) {
-        this.water = water;
-    }
-
-    @Override
-    public String toString() {
-        return "Inventory{" + "food=" + food + ", water=" + water + ", gold=" + gold + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + (int) (Double.doubleToLongBits(this.food) ^ (Double.doubleToLongBits(this.food) >>> 32));
-        hash = 59 * hash + (int) (Double.doubleToLongBits(this.water) ^ (Double.doubleToLongBits(this.water) >>> 32));
-        hash = 59 * hash + (int) (Double.doubleToLongBits(this.gold) ^ (Double.doubleToLongBits(this.gold) >>> 32));
+        hash = 83 * hash + Objects.hashCode(this.inventoryType);
+        hash = 83 * hash + (int) (Double.doubleToLongBits(this.quantityInStock) ^ (Double.doubleToLongBits(this.quantityInStock) >>> 32));
+        hash = 83 * hash + (int) (Double.doubleToLongBits(this.requiredAmount) ^ (Double.doubleToLongBits(this.requiredAmount) >>> 32));
         return hash;
     }
 
@@ -60,26 +39,45 @@ public class Inventory implements Serializable{
             return false;
         }
         final Inventory other = (Inventory) obj;
-        if (Double.doubleToLongBits(this.food) != Double.doubleToLongBits(other.food)) {
+        if (!Objects.equals(this.inventoryType, other.inventoryType)) {
             return false;
         }
-        if (Double.doubleToLongBits(this.water) != Double.doubleToLongBits(other.water)) {
+        if (Double.doubleToLongBits(this.quantityInStock) != Double.doubleToLongBits(other.quantityInStock)) {
             return false;
         }
-        if (Double.doubleToLongBits(this.gold) != Double.doubleToLongBits(other.gold)) {
+        if (Double.doubleToLongBits(this.requiredAmount) != Double.doubleToLongBits(other.requiredAmount)) {
             return false;
         }
         return true;
     }
-    
-    
 
-    public double getGold() {
-        return gold;
+    public String getInventoryType() {
+        return inventoryType;
     }
 
-    public void setGold(double gold) {
-        this.gold = gold;
+    public void setInventoryType(String inventoryType) {
+        this.inventoryType = inventoryType;
+    }
+
+    public double getQuantityInStock() {
+        return quantityInStock;
+    }
+
+    public void setQuantityInStock(double quantityInStock) {
+        this.quantityInStock = quantityInStock;
+    }
+
+    public double getRequiredAmount() {
+        return requiredAmount;
+    }
+
+    public void setRequiredAmount(double requiredAmount) {
+        this.requiredAmount = requiredAmount;
+    }
+
+    @Override
+    public String toString() {
+        return "Inventory{" + "inventoryType=" + inventoryType + ", quantityInStock=" + quantityInStock + ", requiredAmount=" + requiredAmount + '}';
     }
 
     

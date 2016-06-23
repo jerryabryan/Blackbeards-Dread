@@ -15,30 +15,52 @@ import java.util.Objects;
 public class Game implements Serializable{
     
     //class instance variables
-    private String playerName;
-    private double saveShip;
+    
+    private Ship ship;
     private double saveCurrentLocation;
+    private Inventory[] inventory;
+    private Player player;
+    private Map map;
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public Inventory[] getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory[] inventory) {
+        this.inventory = inventory;
+    }
+    
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
+    }
 
     public Game() {
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     
-    public String getPlayerName() {
-        return playerName;
-    }
+    
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
-    public double getSaveShip() {
-        return saveShip;
-    }
-
-    public void setSaveShip(double saveShip) {
-        this.saveShip = saveShip;
-    }
-
+   
     public double getSaveCurrentLocation() {
         return saveCurrentLocation;
     }
@@ -46,44 +68,8 @@ public class Game implements Serializable{
     public void setSaveCurrentLocation(double saveCurrentLocation) {
         this.saveCurrentLocation = saveCurrentLocation;
     }
-    
-    @Override
-    public String toString() {
-        return "Game{" + "playerName=" + playerName + ", saveShip=" + saveShip + ", saveCurrentLocation=" + saveCurrentLocation + '}';
-    }
-    
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.playerName);
-        hash = 31 * hash + (int) (Double.doubleToLongBits(this.saveShip) ^ (Double.doubleToLongBits(this.saveShip) >>> 32));
-        hash = 31 * hash + (int) (Double.doubleToLongBits(this.saveCurrentLocation) ^ (Double.doubleToLongBits(this.saveCurrentLocation) >>> 32));
-        return hash;
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Game other = (Game) obj;
-        if (Double.doubleToLongBits(this.saveShip) != Double.doubleToLongBits(other.saveShip)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.saveCurrentLocation) != Double.doubleToLongBits(other.saveCurrentLocation)) {
-            return false;
-        }
-        if (!Objects.equals(this.playerName, other.playerName)) {
-            return false;
-        }
-        return true;
-    }
+
+ 
     
     
     

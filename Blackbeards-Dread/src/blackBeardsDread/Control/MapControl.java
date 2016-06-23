@@ -45,7 +45,7 @@ class MapControl {
         londonDryDock.setDescription("London Dry Dock");
         Battle battle = new Battle();
         battle.enemyShip.setHealth(50);
-        londonDryDock.setBattle(Battle battle);
+        londonDryDock.setBattle(battle);
         
         
         

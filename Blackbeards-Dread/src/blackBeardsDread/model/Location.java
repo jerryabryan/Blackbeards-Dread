@@ -6,122 +6,62 @@
 package blackBeardsDread.model;
 
 import java.io.Serializable;
-import java.util.Objects;
 /**
  *
  * @author jkbry
  */
-public class Location implements Serializable{
+public enum Location implements Serializable{
     
-    //class instance vaiables
-    private String portName;
-    private double waterStore;
-    private double goodStore;
-    private double armory;
-    private double dryDock;
-    private double guildHall;
-
-    public Location() {
-    }
+    //port one
+    one(5),
+    two(10),
+    three(15),
+    four(20),
+    five(25),
     
-
-    public String getPortName() {
-        return portName;
-    }
-
-    public void setPortName(String portName) {
-        this.portName = portName;
-    }
-
-    public double getWaterStore() {
-        return waterStore;
-    }
-
-    public void setWaterStore(double waterStore) {
-        this.waterStore = waterStore;
-    }
-
-    public double getGoodStore() {
-        return goodStore;
-    }
-
-    public void setGoodStore(double goodStore) {
-        this.goodStore = goodStore;
-    }
-
-    public double getArmory() {
-        return armory;
-    }
-
-    public void setArmory(double armory) {
-        this.armory = armory;
-    }
-
-    public double getDryDock() {
-        return dryDock;
-    }
-
-    public void setDryDock(double dryDock) {
-        this.dryDock = dryDock;
-    }
-
-    public double getGuildHall() {
-        return guildHall;
-    }
-
-    public void setGuildHall(double guildHall) {
-        this.guildHall = guildHall;
-    }
-
-    @Override
-    public String toString() {
-        return "Location{" + "portName=" + portName + ", waterStore=" + waterStore + ", goodStore=" + goodStore + ", armory=" + armory + ", dryDock=" + dryDock + ", guildHall=" + guildHall + '}';
-    }
+    //port two
+    six(30),
+    seven(35),
+    eight(40),
+    nine(45),
+    ten(50),
     
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + Objects.hashCode(this.portName);
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.waterStore) ^ (Double.doubleToLongBits(this.waterStore) >>> 32));
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.goodStore) ^ (Double.doubleToLongBits(this.goodStore) >>> 32));
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.armory) ^ (Double.doubleToLongBits(this.armory) >>> 32));
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.dryDock) ^ (Double.doubleToLongBits(this.dryDock) >>> 32));
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.guildHall) ^ (Double.doubleToLongBits(this.guildHall) >>> 32));
-        return hash;
+    //port three
+    eleven(55),
+    twelve(60),
+    thirteen(65),
+    fourteen(70),
+    fifteen(75),
+    
+    //port four
+    sixteen(80),
+    seventeen(85),
+    eighteen(90),
+    nineteen(95),
+    twenty(100),
+    
+    //port five
+    twentyone(105),
+    twentytwo(110),
+    twentythree(115),
+    twentyfour(120),
+    twentyfive(125),
+    
+    //port six
+    twentysix(130),
+    twentyeseven(135),
+    twentyeight(140),
+    twentynine(145),
+    thirty(150);
+    
+    private final int price;
+
+    Location(int price) {
+        this.price = price;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Location other = (Location) obj;
-        if (Double.doubleToLongBits(this.waterStore) != Double.doubleToLongBits(other.waterStore)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.goodStore) != Double.doubleToLongBits(other.goodStore)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.armory) != Double.doubleToLongBits(other.armory)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.dryDock) != Double.doubleToLongBits(other.dryDock)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.guildHall) != Double.doubleToLongBits(other.guildHall)) {
-            return false;
-        }
-        if (!Objects.equals(this.portName, other.portName)) {
-            return false;
-        }
-        return true;
+    public int getPrice() {
+        return this.price;
     }
-    
     
 }

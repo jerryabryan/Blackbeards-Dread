@@ -12,12 +12,11 @@ package blackBeardsDread.View;
 class ArrivalView {
     private String banner;
     
-    public void ArrivalView() {
+    public ArrivalView() {
          this.banner = "\n"
                   + "\n--------------------------------"
                   + "\n| You have Arrived Saftely     |"
-                  + "\n--------------------------------"
-;
+                  + "\n--------------------------------";
     }
 
     public void displayArrivalView(int location) {

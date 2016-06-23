@@ -16,7 +16,7 @@ public class Battle implements Serializable{
     //class instance variables
     
     private double reward;
-    public Ship enemyShip;
+    private Ship enemyShip;
 
     public Ship getEnemyShip() {
         return enemyShip;
@@ -26,9 +26,12 @@ public class Battle implements Serializable{
         this.enemyShip = enemyShip;
     }
 
-    public Battle() {
-        Ship ship = new Ship();
-        this.enemyShip = ship;
+    public Battle(double reward, double health, double weapons, double shipType) {
+        this.reward = reward;
+        this.enemyShip = new Ship();
+        this.enemyShip.setHealth(health);
+        this.enemyShip.setWeapons(weapons);
+        this.enemyShip.setShipType(shipType);
     }
 
     

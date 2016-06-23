@@ -6,9 +6,13 @@
 package blackBeardsDread.Control;
 
 import blackBeardsDread.model.Battle;
+import blackBeardsDread.model.LocationScene;
+import blackBeardsDread.model.LocationScene.StoreType;
 import blackBeardsDread.model.Map;
 import blackBeardsDread.model.Scene;
 import blackBeardsDread.model.SceneType;
+import blackBeardsDread.model.Ship;
+import blackBeardsDread.model.Ship.ShipType;
 
 /**
  *
@@ -43,9 +47,12 @@ class MapControl {
         
         Scene londonDryDock = new Scene();
         londonDryDock.setDescription("London Dry Dock");
-        Battle battle = new Battle();
-        battle.enemyShip.setHealth(50);
+        Battle battle = new Battle(100, 50, 20, ShipType.levelOne.ordinal() );
         londonDryDock.setBattle(battle);
+        LocationScene locationScene = new LocationScene(10, StoreType.dryDock.ordinal());
+        londonDryDock.setLocationScene(locationScene);
+        londonDryDock.setMapSymbol(" DRY ");
+        scenes[SceneType.dryDock1.ordinal()] = londonDryDock;
         
         
         

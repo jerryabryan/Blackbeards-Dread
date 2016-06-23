@@ -10,17 +10,24 @@ package blackBeardsDread.model;
  * @author Evan
  */
 public class LocationScene {
-    public enum storeType {
-        waterStore,
-        foodStore,
-        armory,
+    public enum StoreType {
         dryDock,
+        foodStore,
+        waterStore,
+        armory,
         guildHall;
     }
     
     private double price;
     private boolean purchased;
-    private String storeType;
+    private double storeType;
+
+    public LocationScene(double price, double storeType) {
+        this.purchased = false;
+        this.price = price;
+        this.storeType = storeType;
+    }
+    
 
     public double getPrice() {
         return price;
@@ -30,7 +37,7 @@ public class LocationScene {
         this.price = price;
     }
 
-    public boolean isPurchased() {
+    public boolean getPurchased() {
         return purchased;
     }
 
@@ -38,11 +45,11 @@ public class LocationScene {
         this.purchased = purchased;
     }
 
-    public String getStoreType() {
+    public double getStoreType() {
         return storeType;
     }
 
-    public void setStoreType(String storeType) {
+    public void setStoreType(double storeType) {
         this.storeType = storeType;
     }
     

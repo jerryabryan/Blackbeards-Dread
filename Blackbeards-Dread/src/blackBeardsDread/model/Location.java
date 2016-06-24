@@ -15,6 +15,15 @@ public class Location implements Serializable{
     private int column;
     private int row;
     private boolean visited;
+    private Scene scene;
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
 
     public int getColumn() {
         return column;

@@ -8,8 +8,11 @@ package blackBeardsDread.Control;
 import blackBeardsDread.model.Game;
 import blackBeardsDread.model.Inventory;
 import blackBeardsDread.model.Item;
+import blackBeardsDread.model.Location;
 import blackBeardsDread.model.Map;
 import blackBeardsDread.model.Player;
+import blackBeardsDread.model.Scene;
+import blackBeardsDread.model.SceneType;
 import blackBeardsDread.model.Ship;
 import blackbeards.dread.BlackbeardsDread;
 
@@ -80,6 +83,46 @@ public class GameControl {
         shipUpgrade.setRequiredAmount(0);
         inventory[Item.shipUpgrade.ordinal()] = shipUpgrade;
         return inventory;
+    }
+
+    static void assignScenesToLocations(Map map, Scene[] scenes) {
+       Location[][] locations = map.getLocations();
+       
+       locations[0][0].setScene(scenes[SceneType.cove.ordinal()]);
+       locations[0][1].setScene(scenes[SceneType.empty.ordinal()]);
+       locations[0][2].setScene(scenes[SceneType.empty.ordinal()]);
+       locations[0][3].setScene(scenes[SceneType.empty.ordinal()]);
+       locations[0][4].setScene(scenes[SceneType.empty.ordinal()]);
+       locations[1][0].setScene(scenes[SceneType.dryDock1.ordinal()]);
+       locations[1][1].setScene(scenes[SceneType.foodStore1.ordinal()]);
+       locations[1][2].setScene(scenes[SceneType.waterStore1.ordinal()]);
+       locations[1][3].setScene(scenes[SceneType.armory1.ordinal()]);
+       locations[1][4].setScene(scenes[SceneType.guildHall1.ordinal()]);
+       locations[2][0].setScene(scenes[SceneType.dryDock2.ordinal()]);
+       locations[2][1].setScene(scenes[SceneType.foodStore2.ordinal()]);
+       locations[2][2].setScene(scenes[SceneType.waterStore2.ordinal()]);
+       locations[2][3].setScene(scenes[SceneType.armory2.ordinal()]);
+       locations[2][4].setScene(scenes[SceneType.guildHall2.ordinal()]);
+       locations[3][0].setScene(scenes[SceneType.dryDock3.ordinal()]);
+       locations[3][1].setScene(scenes[SceneType.foodStore3.ordinal()]);
+       locations[3][2].setScene(scenes[SceneType.waterStore3.ordinal()]);
+       locations[3][3].setScene(scenes[SceneType.armory3.ordinal()]);
+       locations[3][4].setScene(scenes[SceneType.guildHall3.ordinal()]);
+       locations[4][0].setScene(scenes[SceneType.dryDock4.ordinal()]);
+       locations[4][1].setScene(scenes[SceneType.foodStore4.ordinal()]);
+       locations[4][2].setScene(scenes[SceneType.waterStore4.ordinal()]);
+       locations[4][3].setScene(scenes[SceneType.armory4.ordinal()]);
+       locations[4][4].setScene(scenes[SceneType.guildHall4.ordinal()]);
+       locations[5][0].setScene(scenes[SceneType.dryDock5.ordinal()]);
+       locations[5][1].setScene(scenes[SceneType.foodStore5.ordinal()]);
+       locations[5][2].setScene(scenes[SceneType.waterStore5.ordinal()]);
+       locations[5][3].setScene(scenes[SceneType.armory5.ordinal()]);
+       locations[5][4].setScene(scenes[SceneType.guildHall5.ordinal()]);
+       locations[6][0].setScene(scenes[SceneType.finalBattle.ordinal()]);
+       locations[6][1].setScene(scenes[SceneType.empty.ordinal()]);
+       locations[6][2].setScene(scenes[SceneType.empty.ordinal()]);
+       locations[6][3].setScene(scenes[SceneType.empty.ordinal()]);
+       locations[6][4].setScene(scenes[SceneType.empty.ordinal()]);
     }
 
   

@@ -14,10 +14,18 @@ import java.util.Objects;
 public class Map implements Serializable{
     
     //class instance variables
-    private Sea sea;
+    private int currentLocation;
     private Location[][] locations;
     private int noOfRows;
     private int noOfColumns;
+
+    public int getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(int currentLocation) {
+        this.currentLocation = currentLocation;
+    }
 
 
     public Map(int noOfRows, int noOfColumns) {
@@ -44,13 +52,7 @@ public class Map implements Serializable{
         }
     }
 
-    public Sea getSea() {
-        return sea;
-    }
-
-    public void setSea(Sea sea) {
-        this.sea = sea;
-    }
+   
 
     public Location[][] getLocations() {
         return locations;

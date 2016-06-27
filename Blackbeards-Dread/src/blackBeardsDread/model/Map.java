@@ -14,16 +14,17 @@ import java.util.Objects;
 public class Map implements Serializable{
     
     //class instance variables
-    private int currentLocation;
+    private Location currentLocation;
     private Location[][] locations;
     private int noOfRows;
     private int noOfColumns;
-
-    public int getCurrentLocation() {
+    
+    
+    public Location getCurrentLocation() {
         return currentLocation;
     }
 
-    public void setCurrentLocation(int currentLocation) {
+    public void setCurrentLocation(Location currentLocation) {
         this.currentLocation = currentLocation;
     }
 

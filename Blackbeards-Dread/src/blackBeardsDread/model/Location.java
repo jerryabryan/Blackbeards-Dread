@@ -16,7 +16,8 @@ public class Location implements Serializable{
     private int row;
     private boolean visited;
     private Scene scene;
-
+   
+    
     public Scene getScene() {
         return scene;
     }

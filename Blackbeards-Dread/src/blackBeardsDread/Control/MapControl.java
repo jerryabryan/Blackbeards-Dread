@@ -6,6 +6,7 @@
 package blackBeardsDread.Control;
 
 import blackBeardsDread.model.Battle;
+import blackBeardsDread.model.Location;
 import blackBeardsDread.model.LocationScene;
 import blackBeardsDread.model.LocationScene.StoreType;
 import blackBeardsDread.model.Map;
@@ -31,7 +32,8 @@ class MapControl {
     }
 
     static void movePlayerToStartingLocation(Map map) {
-        System.out.println("movePlayerToStartingLocation function called");
+        Location[][] locations = map.getLocations();
+        map.setCurrentLocation(locations[0][0]);
     }
 
     private static Scene[] createScenes() {

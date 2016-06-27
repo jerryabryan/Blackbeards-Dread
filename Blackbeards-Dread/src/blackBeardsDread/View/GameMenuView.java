@@ -121,10 +121,10 @@ public class GameMenuView extends View {
       for( int column = 0; column < locations[row].length; column++){
           String leftIndicator = " ";
           String rightIndicator = " ";
-        //if(locations[row][column] == map.getCurrentLocation()){
-          //leftIndicator = "*"; // can be stars or whatever these are indicators showing visited
-         // rightIndicator = "*"; // same as above
-        //} else 
+        if(locations[row][column] == map.getCurrentLocation()){
+          leftIndicator = "*"; // can be stars or whatever these are indicators showing visited
+          rightIndicator = "*"; // same as above
+        } else 
         if(locations[row][column].isVisited()){
            leftIndicator = ">"; // can be stars or whatever these are indicators showing visited
            rightIndicator = "<"; // same as above

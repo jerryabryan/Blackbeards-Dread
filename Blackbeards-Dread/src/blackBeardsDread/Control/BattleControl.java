@@ -6,6 +6,7 @@
 package blackBeardsDread.Control;
 
 import blackBeardsDread.View.BattleResultView;
+import blackBeardsDread.model.Sea;
 
 /**
  *
@@ -14,10 +15,10 @@ import blackBeardsDread.View.BattleResultView;
 public class BattleControl {
 
    
-    public static int runAway() {
+    public static int runAway(Sea sea) {
         System.out.println("*** runAway function called ***");
         BattleResultView battleResultView = new BattleResultView();
-        battleResultView.displayBattleResultView(3);
+        battleResultView.displayBattleResultView(3, sea);
         return 3;
     }
 
@@ -36,9 +37,9 @@ public class BattleControl {
         return 20;
     }
 
-    public static int fireCannons() {
+    public static int fireCannons(Sea sea) {
             BattleResultView battleResultView = new BattleResultView();
-        battleResultView.displayBattleResultView(1);
+        battleResultView.displayBattleResultView(1, sea);
         return 1;
     }
     

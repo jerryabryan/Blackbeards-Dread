@@ -15,7 +15,7 @@ class ArrivalView {
     public ArrivalView() {
          this.banner = "\n"
                   + "\n--------------------------------"
-                  + "\n| You have Arrived Saftely     |"
+                  + "\n|   You have Arrived Saftely   |"
                   + "\n--------------------------------";
     }
 

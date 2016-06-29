@@ -58,23 +58,50 @@ class HelpMenuView extends View {
     }
 
     private void goalOfGame() {
-        System.out.println("\n*** goalOfGame() called *** Try again");
+        System.out.println("\n************************************************"
+                         + "\n* The goal of the game is to prepare for your  *"
+                         + "\n* final battle against Blackbeard. You have    *"
+                         + "\n* to purchase supplies and ship upgrades along *"
+                         + "\n* your way. If you don't prepare, you risk the *"
+                         + "\n* chance of being defeated.                    *"
+                         + "\n************************************************");
     }
 
     private void howToMove() {
-        System.out.println("\n*** howToMove() called *** Try again");
+        System.out.println("\n************************************************"
+                         + "\n* Move by simply selecting the menu option     *"
+                         + "\n* that will take you to your desired location. *"
+                         + "\n* However, be wary, if you venture too far     *"
+                         + "\n* without preparing, you may end up meeting    *"
+                         + "\n* your doom!                                   *"
+                         + "\n************************************************");
     }
 
     private void resourcesAvailable() {
-        System.out.println("\n*** resourcesAvailable() called *** Try again");
+        System.out.println("\n************************************************"
+                         + "\n* Resources available are water, food, and     *"
+                         + "\n* weapon upgrades. Gold can can be used to     *"
+                         + "\n* purchase these resources.                    *"
+                         + "\n************************************************");
     }
 
     private void howToUseResources() {
-        System.out.println("\n*** howToUseResources() called *** Try again");
+        System.out.println("\n************************************************"
+                         + "\n* Water and food are required for each journey *"
+                         + "\n* to a new location, weapons are not. Remember *"
+                         + "\n* to upgrade your ship. If you don't, you may  *"
+                         + "\n* end up finding yourelf sinking down to meet  *"
+                         + "\n* 'ol Hobb.                                    *"
+                         + "\n************************************************");
     }
 
     private void helpTips() {
-        System.out.println("\n*** helpTips() called *** Try again");
+        System.out.println("\n************************************************"
+                         + "\n* Don't forget to purchase your ship upgrades. *"
+                         + "\n* If you don't have enough gold you can check  *"
+                         + "\n* the Guild Hall for possible employment.      *"
+                         + "\n* Be sure to face Blackbeard fully prepared!   *"
+                         + "\n************************************************");
     }
     
 }

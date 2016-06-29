@@ -24,7 +24,7 @@ public class GameMenuView extends View {
     public GameMenuView() {
         super("\n"
                   + "\n----------------------------"
-                  + "\n| Game Menu                |"
+                  + "\n|        Game Menu         |"
                   + "\n----------------------------"
                   + "\nM - Map"
                   + "\nS - Purchase supplies"
@@ -65,7 +65,7 @@ public class GameMenuView extends View {
     }
 
     private void changeStore() {
-        System.out.println("*** changeSore function called ***");
+        System.out.println("*** changeStore function called ***");
     }
 
     private void purchaseSupplies() {

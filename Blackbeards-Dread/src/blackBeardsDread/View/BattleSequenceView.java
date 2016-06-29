@@ -19,7 +19,7 @@ public class BattleSequenceView extends View{
         
         super("\n"
                   + "\n--------------------------------"
-                  + "\n| Battle Menu                   |"
+                  + "\n|   You've met an enemy ship!  |"
                   + "\n--------------------------------"
                   + "\nF - Fire"
                   + "\nR - Run back to Dead Reef Cove"

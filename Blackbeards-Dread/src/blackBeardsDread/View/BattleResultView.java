@@ -66,7 +66,7 @@ public class BattleResultView {
     }
 
     private void returnToCove() {
-        System.out.println("\n*** You successfully fleed to Dead Reef Cove!***");
+        System.out.println("\n*** You successfully fled to Dead Reef Cove!***");
         
        
     }

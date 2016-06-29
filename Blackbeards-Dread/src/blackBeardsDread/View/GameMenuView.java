@@ -51,8 +51,8 @@ public class GameMenuView extends View {
                 this.changeStore();
                 break;
             case "P": //move port Location
-                this.changePort();
-                
+                MoveLocationView moveLocationView = new MoveLocationView();
+                moveLocationView.display();
                 break;
             case "I":
                 this.viewInventory();
@@ -112,9 +112,9 @@ public class GameMenuView extends View {
         Location[][] locations = map.getLocations();
         try { 
     System.out.print("  |");
-     for( int column = 0; column < locations[0].length; column++){
+    for( int column = 0; column < locations[0].length; column++){
       System.out.print("    " + column + "    |"); // print col numbers to side of map
-     }
+    }
     System.out.println();
     for( int row = 0; row < locations.length; row++){
       System.out.print(row + " "); // print row numbers to side of map
@@ -140,17 +140,5 @@ public class GameMenuView extends View {
   }catch (Exception e) {
     System.out.println("Error");
   }
-    }
-
-    private void changePort() {
-       Game game = BlackbeardsDread.getCurrentGame();
-       Map map = game.getMap();
-       Location[][] locations = map.getLocations();
-       Location currentLocation = map.getCurrentLocation();
-       if (currentLocation == locations[0][0] || currentLocation == locations[1][0] || currentLocation == locations[2][0] || currentLocation == locations[3][0] || currentLocation == locations[4][0] || currentLocation == locations[5][0]) {
-           MoveLocationView moveLocationView = new MoveLocationView();
-                moveLocationView.display();
-       }
-       else {System.out.println("You must be at a Dry Dock to move ports");}
     }
 }

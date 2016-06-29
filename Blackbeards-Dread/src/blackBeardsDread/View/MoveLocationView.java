@@ -7,12 +7,7 @@ package blackBeardsDread.View;
 
 import blackBeardsDread.Control.BattleControl;
 import blackBeardsDread.Control.LocationControl;
-import blackBeardsDread.model.Game;
-import blackBeardsDread.model.Inventory;
-import blackBeardsDread.model.Location;
-import blackBeardsDread.model.Map;
-import blackbeards.dread.BlackbeardsDread;
-
+import blackBeardsDread.model.Sea;
 import java.util.Scanner;
 
 /**
@@ -21,7 +16,7 @@ import java.util.Scanner;
  */
 public class MoveLocationView extends View{
   
-   
+    private int currentLocation;
     
     public MoveLocationView() {
         super("\n"
@@ -33,7 +28,7 @@ public class MoveLocationView extends View{
                   + "\n3 - Port 3"
                   + "\n4 - Port 4"
                   + "\n5 - Port 5"
-                  + "\nQ - Cancel "
+                  + "\nC - Cancel "
                   + "\n----------------------------");
        
     }
@@ -47,7 +42,7 @@ public class MoveLocationView extends View{
     @Override
     public boolean doAction(String value) {
             value = value.toUpperCase();
-       
+        this.currentLocation = 0;
         switch (value) {
             case "1": 
                 this.setCourse(1);
@@ -71,19 +66,14 @@ public class MoveLocationView extends View{
     }
 
     private void setCourse(int i) {
-        Game game = BlackbeardsDread.getCurrentGame();
-        Inventory[] inventoryItems = game.getInventory();
-        Map map = game.getMap();
-        Location currentLocation = map.getCurrentLocation();
-        Location[][] locations = map.getLocations();
-        boolean set = LocationControl.setCourse(map, i);
-        if (set == false) {
+        if (this.currentLocation == i) {
             return;
         }
-        this.sea.setStartLocation(currentLocation);
-        this.sea.setEndLocation(locations[i][0]);
-        String fCost = String.valueOf(20);
-        String wCost = String.valueOf(20);
+        Sea sea = LocationControl.setCourse(this.currentLocation, i);
+        double foodCost = LocationControl.setFoodCost(this.currentLocation, i);
+        double waterCost = LocationControl.setWaterCost(this.currentLocation, i);
+        String fCost = String.valueOf(foodCost);
+        String wCost = String.valueOf(waterCost);
         String banner  = "\n"
                   + "\n-----------------------------"
                   + "\n|      Cost to set sail      "
@@ -104,7 +94,7 @@ public class MoveLocationView extends View{
                 return; // exit game
             
             // do the requested action and dispaly the next view
-            done = this.setSail(menuOption);
+            done = this.setSail(menuOption, i);
             
         } while(!done);    
         ArrivalView arrivalView = new ArrivalView();
@@ -114,7 +104,7 @@ public class MoveLocationView extends View{
         return;
     }
 
-    private boolean setSail(String choice) {
+    private boolean setSail(String choice, int i) {
        choice = choice.toUpperCase();
        if ("Y".equals(choice)) {
           

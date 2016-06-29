@@ -20,26 +20,8 @@ class ArrivalView {
     }
 
     public void displayArrivalView(int location) {
-        String port = null;
-        switch (location) {
-            case 1:
-                port = "London";
-                break;
-            case 2:
-                port = "Canary Island";
-                break;
-            case 3:
-                port = "Bahamas";
-                break;
-            case 4:
-                port = "Guadalajara";
-                break;
-            case 5:
-                port = "Florida Keys";
-                break;
-        }
         System.out.println(this.banner);
-        System.out.println("you are at port" + port);
+        System.out.println("you are at port" + location);
         
     }
 }

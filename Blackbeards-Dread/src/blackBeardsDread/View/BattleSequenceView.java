@@ -50,7 +50,7 @@ public class BattleSequenceView extends View{
     }
 
     private boolean runToCove() {
-        int results = BattleControl.runAway(this.sea);
+        int results = BattleControl.runAway();
         if (results == 3) {
             return true;
             
@@ -61,7 +61,7 @@ public class BattleSequenceView extends View{
   
 
     private boolean fireCannnons() {
-        int results = BattleControl.fireCannons(this.sea);
+        int results = BattleControl.fireCannons();
             if (results == 1) {
               return true;
             } else

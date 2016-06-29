@@ -5,6 +5,8 @@
  */
 package blackBeardsDread.Control;
 
+import blackBeardsDread.Exceptions.PortControlException;
+
 /**
  *
  * @author jkbry
@@ -17,58 +19,62 @@ public class PortControl {
     }
     
     
-    public double purchaseWater(double water, double gold, double desiredWater, double waterPrice) {
+    public void purchaseWater(double water, double gold, double desiredWater, double waterPrice) throws PortControlException {
         if (desiredWater < 0 || desiredWater > 10){
-            return -1;
+            throw new PortControlException("Can not purchase negative amounts of "
+                                         + "water or amounts over 10 units");
         }
         
         if (gold < (desiredWater * waterPrice)) {
-            return -2;
+            throw new PortControlException("You do not have enough gold to make "
+                                         + "this purchase!");
         }
         
         double newWaterTotal = water + desiredWater;
         
         if (newWaterTotal > 100) {
-            return -3;
+            throw new PortControlException("You may not purchase more than 100 "
+                                         + "units of water!");
         }
         
-        return desiredWater;
     }
     
-    public double purchaseFood(double food, double gold, double desiredFood, double foodPrice) {
+    public void purchaseFood(double food, double gold, double desiredFood, double foodPrice) throws PortControlException {
         if (desiredFood < 0 || desiredFood > 10){
-            return -1;
+            throw new PortControlException("Can not purchase negative amounts of "
+                                         + "food or amounts over 10 units");
         }
         
         if (gold < (desiredFood * foodPrice)) {
-            return -2;
+            throw new PortControlException("You do not have enough gold to make "
+                                         + "this purchase!");
         }
         
         double newFoodTotal = food + desiredFood;
         
         if (newFoodTotal > 100) {
-            return -3;
+            throw new PortControlException("You may not purchase more than 100 "
+                                         + "units of water!");
         }
         
-        return desiredFood;
     }
     
-    public double purchaseArmory(double weapons, double gold, double desiredWeapons, double weaponsPrice) {
+    public void purchaseArmory(double weapons, double gold, double desiredWeapons, double weaponsPrice) throws PortControlException {
         if (desiredWeapons < 0 || desiredWeapons > 10){
-            return -1;
+            throw new PortControlException("You can only purchase one weapon upgrade!");
         }
         
         if (gold < (desiredWeapons * weaponsPrice)) {
-            return -2;
+            throw new PortControlException("You do not have enough gold to make "
+                                         + "this purchase!");
         }
         
         double newWeaponsTotal = weapons + desiredWeapons;
         
         if (newWeaponsTotal > 100) {
-            return -3;
+            throw new PortControlException("You can only purchase one weapon uprade!");
         }
         
-        return desiredWeapons;
     }
 }
 

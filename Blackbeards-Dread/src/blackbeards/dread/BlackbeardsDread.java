@@ -24,11 +24,17 @@ public class BlackbeardsDread {
     public static void main(String[] args) {
         
     StartProgramView startProgramView = new StartProgramView();
+    try {
+    
     startProgramView.displayStartProgramView();
         
 //    MoveLocationView moveLocationView = new MoveLocationView();
 //    moveLocationView.displayMoveLocationView(0);
-            
+    } catch (Throwable te) {
+        System.out.println(te.getMessage());
+        te.printStackTrace();
+        startProgramView.displayStartProgramView();
+    }        
         
         
     }

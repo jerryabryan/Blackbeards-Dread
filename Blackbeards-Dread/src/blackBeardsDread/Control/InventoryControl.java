@@ -5,6 +5,7 @@
  */
 package blackBeardsDread.Control;
 
+import blackBeardsDread.Exceptions.InventoryControlException;
 import blackBeardsDread.model.Game;
 import blackBeardsDread.model.Inventory;
 import blackBeardsDread.model.Item;
@@ -16,15 +17,15 @@ import blackbeards.dread.BlackbeardsDread;
  */
 public class InventoryControl {
 
-    public static int checkTravelCost(double wCost, double fCost) {
+    public static void checkTravelCost(double wCost, double fCost) throws InventoryControlException {
         Game game = BlackbeardsDread.getCurrentGame();
         Inventory[] inventory = game.getInventory();
         double foodAmount = inventory[Item.food.ordinal()].getQuantityInStock();
         double waterAmount = inventory[Item.water.ordinal()].getQuantityInStock();
         if (foodAmount >= fCost || waterAmount >= wCost) {
-            return 1;
+            return;
         } else {
-            return 0;
+            throw new InventoryControlException("You do not have enough supplies.");
         }
         
     }

@@ -9,6 +9,7 @@ import blackBeardsDread.Control.BattleControl;
 import blackBeardsDread.Control.InventoryControl;
 import blackBeardsDread.Control.LocationControl;
 import blackBeardsDread.Control.MapControl;
+import blackBeardsDread.Exceptions.InventoryControlException;
 import blackBeardsDread.model.Battle;
 import blackBeardsDread.model.Game;
 import blackBeardsDread.model.Inventory;
@@ -126,19 +127,21 @@ public class MoveLocationView extends View{
     private boolean setSail(String choice, double wCost, double fCost, int i) {
        choice = choice.toUpperCase();
        if ("Y".equals(choice)) {
-           int enough = InventoryControl.checkTravelCost(wCost, fCost);
-           if (enough != 1) {
-               System.out.println("You do not have enough supplies for the journey.");
-               return false;
-           }
+           try {
+           InventoryControl.checkTravelCost(wCost, fCost);
+             } catch (InventoryControlException me) {
+                System.out.println(me.getMessage());
+                
+                 if (me != null) {
+                     return true;
+                 }
+             }
            InventoryControl.deductSuppliesFromInventory(wCost, fCost);
            Location location = MapControl.intToPort(i);
            Scene Scene = location.getScene();
            Battle battle = Scene.getBattle();
            boolean done = false;
            this.eShip = battle.getEnemyShip();
-           String test = String.valueOf(this.eShip.getHealth());
-           System.out.println(test);
            Game game = BlackbeardsDread.getCurrentGame();
            game.seteShip(this.eShip);
            BlackbeardsDread.setCurrentGame(game);

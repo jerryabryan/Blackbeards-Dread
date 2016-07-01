@@ -6,6 +6,7 @@
 package blackBeardsDread.View;
 
 import blackBeardsDread.model.Sea;
+import blackBeardsDread.model.Ship;
 import java.util.Scanner;
 
 /**
@@ -16,6 +17,7 @@ public abstract class View implements ViewInterface {
     
     protected String displayMessage;
     protected Sea sea = null;
+    
     
     public View(){ 
     }

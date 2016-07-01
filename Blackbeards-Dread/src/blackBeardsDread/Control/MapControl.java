@@ -6,6 +6,7 @@
 package blackBeardsDread.Control;
 
 import blackBeardsDread.model.Battle;
+import blackBeardsDread.model.Game;
 import blackBeardsDread.model.Location;
 import blackBeardsDread.model.LocationScene;
 import blackBeardsDread.model.LocationScene.StoreType;
@@ -14,12 +15,13 @@ import blackBeardsDread.model.Scene;
 import blackBeardsDread.model.SceneType;
 import blackBeardsDread.model.Ship;
 import blackBeardsDread.model.Ship.ShipType;
+import blackbeards.dread.BlackbeardsDread;
 
 /**
  *
  * @author Evan
  */
-class MapControl {
+public class MapControl {
 
     static Map createMap() {
         Map map = new Map(7, 5);
@@ -31,9 +33,40 @@ class MapControl {
         return map;
     }
 
-    static void movePlayerToStartingLocation(Map map) {
+    public static void movePlayerToStartingLocation(Map map) {
         Location[][] locations = map.getLocations();
         map.setCurrentLocation(locations[0][0]);
+    }
+    
+    public static int portToInt(Location location) {
+        Game game = BlackbeardsDread.getCurrentGame();
+        Map map = game.getMap();
+        Location[][] locations = map.getLocations();
+        if (location == locations[0][0]) {
+            return 0;
+        } else if (location == locations[1][0]) {
+            return 1;
+        } else if (location == locations[2][0]) {
+            return 2;
+        } else if (location == locations[3][0]) {
+            return 3;
+        } else if (location == locations[4][0]) {
+            return 4;
+        } else if (location == locations[5][0]) {
+            return 5;
+        } else if (location == locations[6][0]) {
+            return 6;
+        } else {
+            return -1;
+        }
+    }
+    
+    public static Location intToPort(int i) {
+        Game game = BlackbeardsDread.getCurrentGame();
+        Map map = game.getMap();
+        Location[][] locations = map.getLocations();
+        Location location = locations[i][0];
+        return location;
     }
 
     private static Scene[] createScenes() {
@@ -41,7 +74,7 @@ class MapControl {
         Scene[] scenes = new Scene[SceneType.values().length];
         
         Scene cove = new Scene();
-        cove.setDescription("You are at your hidden Cove");
+        cove.setDescription("Hidden Cove");
         cove.setBattle(null);
         cove.setLocationScene(null);
         cove.setMapSymbol(" COVE ");

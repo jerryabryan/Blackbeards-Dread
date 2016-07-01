@@ -6,8 +6,20 @@
 package blackBeardsDread.View;
 
 import blackBeardsDread.Control.BattleControl;
+import blackBeardsDread.Control.InventoryControl;
 import blackBeardsDread.Control.LocationControl;
+import blackBeardsDread.Control.MapControl;
+import blackBeardsDread.model.Battle;
+import blackBeardsDread.model.Game;
+import blackBeardsDread.model.Inventory;
+import blackBeardsDread.model.Item;
+import blackBeardsDread.model.Location;
+import blackBeardsDread.model.LocationScene;
+import blackBeardsDread.model.Map;
+import blackBeardsDread.model.Scene;
 import blackBeardsDread.model.Sea;
+import blackBeardsDread.model.Ship;
+import blackbeards.dread.BlackbeardsDread;
 import java.util.Scanner;
 
 /**
@@ -17,6 +29,9 @@ import java.util.Scanner;
 public class MoveLocationView extends View{
   
     private int currentLocation;
+    private int endLocation;
+    private Ship eShip;
+    private Ship pShip;
     
     public MoveLocationView() {
         super("\n"
@@ -30,7 +45,7 @@ public class MoveLocationView extends View{
                   + "\n5 - Port 5"
                   + "\nC - Cancel "
                   + "\n----------------------------");
-       
+        
     }
     //computer displays a message prompting the player to enter the desired location.
     //player enters the location.
@@ -66,6 +81,11 @@ public class MoveLocationView extends View{
     }
 
     private void setCourse(int i) {
+        Game game = BlackbeardsDread.getCurrentGame();
+        Map map = game.getMap();
+        Location currentLocation = map.getCurrentLocation();
+        this.currentLocation = MapControl.portToInt(currentLocation);
+        this.endLocation = i;
         if (this.currentLocation == i) {
             return;
         }
@@ -94,26 +114,72 @@ public class MoveLocationView extends View{
                 return; // exit game
             
             // do the requested action and dispaly the next view
-            done = this.setSail(menuOption, i);
+            done = this.setSail(menuOption, foodCost, waterCost, i);
             
         } while(!done);    
-        ArrivalView arrivalView = new ArrivalView();
-        arrivalView.displayArrivalView(i);
+       
         //GameMenuView gameMenu = new GameMenuView();
         //gameMenu.displayGameMenuView();
         return;
     }
 
-    private boolean setSail(String choice, int i) {
+    private boolean setSail(String choice, double wCost, double fCost, int i) {
        choice = choice.toUpperCase();
        if ("Y".equals(choice)) {
-          
-           BattleSequenceView battleSequenceView = new BattleSequenceView();
+           int enough = InventoryControl.checkTravelCost(wCost, fCost);
+           if (enough != 1) {
+               System.out.println("You do not have enough supplies for the journey.");
+               return false;
+           }
+           InventoryControl.deductSuppliesFromInventory(wCost, fCost);
+           Location location = MapControl.intToPort(i);
+           Scene Scene = location.getScene();
+           Battle battle = Scene.getBattle();
+           this.eShip = battle.getEnemyShip();
+           Game game = BlackbeardsDread.getCurrentGame();
+           game.seteShip(this.eShip);
+           BlackbeardsDread.setCurrentGame(game);
+           this.pShip = game.getShip();
+           do {
+           BattleSequenceView battleSequenceView = new BattleSequenceView(location);
            battleSequenceView.display();
+           } while(this.eShip.getDammage() < this.eShip.getHealth());
+           if (this.pShip.getDammage() >= this.pShip.getHealth()) {
+               System.out.println("You lost");
+               StartProgramView startProgramView = new StartProgramView();
+               try {
+               startProgramView.displayStartProgramView();
+               } catch (Throwable te) {
+               System.out.println(te.getMessage());
+               te.printStackTrace();
+               startProgramView.displayStartProgramView();
+               }    
+           } else {
+            Game gameUpdate = BlackbeardsDread.getCurrentGame();
+            Map map = game.getMap();
+            Location currentLocation = map.getCurrentLocation();
+            Scene sceneUpdate = currentLocation.getScene();
+            String description = sceneUpdate.getDescription();
+            System.out.println("\n--------------------------------"
+                             + "\n   You have Arrived Saftely   "
+                             + "\n   at " + description 
+                             + "\n--------------------------------");
+            double reward = battle.getReward();
+            Inventory[] inventory = gameUpdate.getInventory();
+            double gold = inventory[Item.gold.ordinal()].getQuantityInStock();
+            double newGold = gold + reward;
+            inventory[Item.gold.ordinal()].setQuantityInStock(newGold);
+            gameUpdate.setInventory(inventory);
+            BlackbeardsDread.setCurrentGame(gameUpdate);
+            
+               
+           
            return true;
+       }
        } else {
            return false;
-       }
+        }
+        return false;
     }
 
     private String getMenuOption2() {

@@ -27,7 +27,7 @@ public class LocationControl {
         if (dist < 0) {
             dist = dist * -1;
         }
-        double cost = dist * 30;
+        double cost = dist * 20;
         return cost;
     }
 
@@ -36,7 +36,7 @@ public class LocationControl {
         if (dist < 0) {
             dist = dist * -1;
         }
-        double cost = dist * 30;
+        double cost = dist * 20;
         return cost;
     }
 }

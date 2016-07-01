@@ -6,6 +6,12 @@
 package blackBeardsDread.View;
 
 import blackBeardsDread.Control.BattleControl;
+import blackBeardsDread.Control.MapControl;
+import blackBeardsDread.model.Game;
+import blackBeardsDread.model.Location;
+import blackBeardsDread.model.Map;
+import blackBeardsDread.model.Ship;
+import blackbeards.dread.BlackbeardsDread;
 import java.util.Scanner;
 
 /**
@@ -13,18 +19,36 @@ import java.util.Scanner;
  * @author jkbry
  */
 public class BattleSequenceView extends View{
+    private final Location location;
+    private Ship pShip;
+    private Ship eShip;
     
     
-    public BattleSequenceView() {
+    
+    public BattleSequenceView(Location location) {
         
         super("\n"
                   + "\n--------------------------------"
                   + "\n|   You've met an enemy ship!  |"
-                  + "\n--------------------------------"
-                  + "\nF - Fire"
-                  + "\nR - Run back to Dead Reef Cove"
                   + "\n--------------------------------");
-        
+        Game game = BlackbeardsDread.getCurrentGame();
+        this.pShip = game.getShip();
+        this.eShip = game.geteShip();
+        double playerHealth = this.pShip.getHealth();
+        double playerDamage = this.pShip.getDammage();
+        double enemyHealth = this.eShip.getHealth();
+        double enemyDamage = this.eShip.getDammage();
+        double playerLife = playerHealth - playerDamage;
+        double enemyLife = enemyHealth - enemyDamage;
+        String pLife = String.valueOf(playerLife);
+        String eLife = String.valueOf(enemyLife);
+        this.location =location;
+        this.displayMessage +=   "\n Your Health   " + pLife
+                               + "\n Enemey Health " + eLife
+                               + "\n--------------------------------"
+                               + "\nF - Fire"
+                               + "\nR - Run back to Dead Reef Cove"
+                               + "\n--------------------------------";
     }
     
     
@@ -50,25 +74,42 @@ public class BattleSequenceView extends View{
     }
 
     private boolean runToCove() {
-        int results = BattleControl.runAway();
-        if (results == 3) {
-            return true;
-            
-        } else
-            return false;
+        Game game = BlackbeardsDread.getCurrentGame();
+        Map map = game.getMap();
+        Location[][] locations = map.getLocations();
+        map.setCurrentLocation(locations[0][0]);
+        game.setMap(map);
+        BlackbeardsDread.setCurrentGame(game);
+        return true;
     }
 
   
 
     private boolean fireCannnons() {
-        int results = BattleControl.fireCannons();
-            if (results == 1) {
-              return true;
-            } else
-                return false;    }
+        double playerAttack = this.pShip.getWeapons();
+        double enemyHealth = this.eShip.getHealth();
+        double enemyDammage = this.eShip.getDammage();
+        enemyDammage = enemyDammage + playerAttack;
+        if (enemyHealth <= enemyDammage) {
+            this.eShip.setDammage(enemyDammage);
+            return true;
+        }
+        double enemyAttack = this.eShip.getWeapons();
+        double playerHealth = this.pShip.getHealth();
+        double playerDammage = this.pShip.getDammage();
+        playerDammage = playerDammage + enemyAttack;
+        this.eShip.setDammage(enemyDammage);
+        this.pShip.setDammage(playerDammage);
+        Game game = BlackbeardsDread.getCurrentGame();
+        Map map = game.getMap();
+        map.setCurrentLocation(this.location);
+        game.setMap(map);
+        BlackbeardsDread.setCurrentGame(game);
+        return true;
     
 }
 
+}
 
 /*
 

@@ -21,6 +21,15 @@ public class Game implements Serializable{
     private Inventory[] inventory;
     private Player player;
     private Map map;
+    private Ship eShip;
+
+    public Ship geteShip() {
+        return eShip;
+    }
+
+    public void seteShip(Ship eShip) {
+        this.eShip = eShip;
+    }
 
     public Map getMap() {
         return map;

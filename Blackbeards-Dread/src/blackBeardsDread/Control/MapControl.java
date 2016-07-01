@@ -75,7 +75,8 @@ public class MapControl {
         
         Scene cove = new Scene();
         cove.setDescription("Hidden Cove");
-        cove.setBattle(null);
+        Battle battle0 = new Battle(0, 0, 0, ShipType.levelOne.ordinal() );
+        cove.setBattle(battle0);
         cove.setLocationScene(null);
         cove.setMapSymbol(" COVE ");
         scenes[SceneType.cove.ordinal()] = cove;

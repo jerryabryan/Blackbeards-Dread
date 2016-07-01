@@ -38,12 +38,12 @@ public class MoveLocationView extends View{
                   + "\n----------------------------"
                   + "\n| Choose Destination        |"
                   + "\n----------------------------"
-                  + "\n1 - Port 1"
-                  + "\n2 - Port 2"
-                  + "\n3 - Port 3"
-                  + "\n4 - Port 4"
-                  + "\n5 - Port 5"
-                  + "\nC - Cancel "
+                  + "\n1 - London Port"
+                  + "\n2 - Canary Islands Port"
+                  + "\n3 - Bahamas Port"
+                  + "\n4 - Guadalajara Port"
+                  + "\n5 - Florida Keys Port"
+                  + "\nQ - Cancel "
                   + "\n----------------------------");
         
     }
@@ -135,7 +135,10 @@ public class MoveLocationView extends View{
            Location location = MapControl.intToPort(i);
            Scene Scene = location.getScene();
            Battle battle = Scene.getBattle();
+           boolean done = false;
            this.eShip = battle.getEnemyShip();
+           String test = String.valueOf(this.eShip.getHealth());
+           System.out.println(test);
            Game game = BlackbeardsDread.getCurrentGame();
            game.seteShip(this.eShip);
            BlackbeardsDread.setCurrentGame(game);
@@ -143,7 +146,13 @@ public class MoveLocationView extends View{
            do {
            BattleSequenceView battleSequenceView = new BattleSequenceView(location);
            battleSequenceView.display();
-           } while(this.eShip.getDammage() < this.eShip.getHealth());
+           Game game2 = BlackbeardsDread.getCurrentGame();
+           Map map2 =game2.getMap();
+           Location location2 = map2.getCurrentLocation();
+           Scene scene2 = location2.getScene();
+           Battle battle2 = scene2.getBattle();
+           done = battle2.isDone();
+           } while(!done);
            if (this.pShip.getDammage() >= this.pShip.getHealth()) {
                System.out.println("You lost");
                StartProgramView startProgramView = new StartProgramView();
@@ -155,22 +164,31 @@ public class MoveLocationView extends View{
                startProgramView.displayStartProgramView();
                }    
            } else {
-            Game gameUpdate = BlackbeardsDread.getCurrentGame();
-            Map map = game.getMap();
-            Location currentLocation = map.getCurrentLocation();
-            Scene sceneUpdate = currentLocation.getScene();
-            String description = sceneUpdate.getDescription();
-            System.out.println("\n--------------------------------"
-                             + "\n   You have Arrived Saftely   "
-                             + "\n   at " + description 
-                             + "\n--------------------------------");
-            double reward = battle.getReward();
-            Inventory[] inventory = gameUpdate.getInventory();
-            double gold = inventory[Item.gold.ordinal()].getQuantityInStock();
-            double newGold = gold + reward;
-            inventory[Item.gold.ordinal()].setQuantityInStock(newGold);
-            gameUpdate.setInventory(inventory);
-            BlackbeardsDread.setCurrentGame(gameUpdate);
+//            Game gameUpdate = BlackbeardsDread.getCurrentGame();
+//            Map mapUpdate = gameUpdate.getMap();
+//            Location[][] locations = mapUpdate.getLocations();
+//            Location currentLocation = mapUpdate.getCurrentLocation();
+//            Scene sceneUpdate = currentLocation.getScene();
+//            Battle battleUpdate = sceneUpdate.getBattle();
+//            String description = sceneUpdate.getDescription();
+//            System.out.println("\n--------------------------------"
+//                             + "\n   You have Arrived Saftely   "
+//                             + "\n   at " + description 
+//                             + "\n--------------------------------");
+//            double reward = battleUpdate.getReward();
+//            Inventory[] inventory = gameUpdate.getInventory();
+//            if (currentLocation == locations[0][0]) {
+//                if (inventory[Item.food.ordinal()].getQuantityInStock() < 20) {
+//                inventory[Item.food.ordinal()].setQuantityInStock(20);
+//                } 
+//            if (inventory[Item.water.ordinal()].getQuantityInStock() < 20) {
+//                inventory[Item.water.ordinal()].setQuantityInStock(20);
+//                 }}
+//            double gold = inventory[Item.gold.ordinal()].getQuantityInStock();
+//            double newGold = gold + reward;
+//            inventory[Item.gold.ordinal()].setQuantityInStock(newGold);
+//            gameUpdate.setInventory(inventory);
+//            BlackbeardsDread.setCurrentGame(gameUpdate);
             
                
            

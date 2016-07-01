@@ -17,6 +17,18 @@ public class Battle implements Serializable{
     
     private double reward;
     private Ship enemyShip;
+    private boolean done;
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
+
+  
+    
 
     public Ship getEnemyShip() {
         return enemyShip;
@@ -32,6 +44,7 @@ public class Battle implements Serializable{
         this.enemyShip.setHealth(health);
         this.enemyShip.setWeapons(weapons);
         this.enemyShip.setShipType(shipType);
+        this.done = false;
     }
 
     

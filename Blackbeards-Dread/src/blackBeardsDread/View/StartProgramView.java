@@ -110,10 +110,9 @@ public class StartProgramView {
        
         //dispalys the welcome message
         System.out.println("\n======================================="
-                         + "\n       Welcome to the game " + player.getName()
-                         + "\n               Arrrgghh"
-                         + "\n======================================="
-                        );
+                           + "\n       Welcome to the game " + player.getName()
+                           + "\n               Arrrgghh"
+                           + "\n=======================================");
     
         //Creat MainMenuView object
         MainMenuView mainMenuView = new MainMenuView();

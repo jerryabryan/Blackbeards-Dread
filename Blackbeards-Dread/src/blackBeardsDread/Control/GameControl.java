@@ -5,6 +5,7 @@
  */
 package blackBeardsDread.Control;
 
+import blackBeardsDread.Exceptions.GameControlException;
 import blackBeardsDread.model.Game;
 import blackBeardsDread.model.Inventory;
 import blackBeardsDread.model.Item;
@@ -15,6 +16,10 @@ import blackBeardsDread.model.Scene;
 import blackBeardsDread.model.SceneType;
 import blackBeardsDread.model.Ship;
 import blackbeards.dread.BlackbeardsDread;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  *
@@ -158,6 +163,34 @@ public class GameControl {
        locations[6][3].setVisited(false);
        locations[6][4].setScene(scenes[SceneType.empty.ordinal()]);
        locations[6][4].setVisited(false);
+    }
+
+    public static void saveGame(Game game, String filePath) throws GameControlException {
+        
+        try( FileOutputStream fops = new FileOutputStream(filePath)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            
+            output.writeObject(game);
+        }
+        catch(Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+    }
+
+    public static void getSavedGame(String filePath) throws GameControlException {
+        
+        Game game = null;
+        
+        try( FileInputStream fips = new FileInputStream(filePath)) {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            
+            game = (Game) input.readObject();
+        }
+        catch(Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+        
+        BlackbeardsDread.setCurrentGame(game);
     }
 
   

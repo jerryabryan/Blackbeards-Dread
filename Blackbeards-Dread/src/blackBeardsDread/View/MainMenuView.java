@@ -64,7 +64,18 @@ public class MainMenuView extends View {
     }
 
     private void startExistingGame() {
-        System.out.println("*** startExistingGame function called ***");
+        this.console.println("\n\nEnter the file path for file where the game is saved.");
+        
+        String filePath = this.getInput();
+        
+        try {
+            GameControl.getSavedGame(filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
+        
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
     }
 
     private void displayHelpMenu() {
@@ -74,7 +85,15 @@ public class MainMenuView extends View {
     }
 
     private void saveGame() {
-        System.out.println("*** saveGame function called ***");
+        this.displayMessage = "\n\nEnter the file path for file where the game is to be saved.";
+        //this.console.println("\n\nEnter the file path for file where the game is to be saved.");
+        String filePath = this.getInput();
+        
+        try {
+            GameControl.saveGame(BlackbeardsDread.getCurrentGame(), filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
     }
     
 }

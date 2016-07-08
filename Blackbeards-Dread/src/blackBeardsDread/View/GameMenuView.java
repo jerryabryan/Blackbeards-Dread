@@ -56,7 +56,7 @@ public class GameMenuView extends View {
                 break;
             case "I":
                 this.viewInventory();
-                break;
+                break;    
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
         }
@@ -65,7 +65,7 @@ public class GameMenuView extends View {
     }
 
     private void changeStore() {
-        System.out.println("*** changeStore function called ***");
+        this.console.println("*** changeStore function called ***");
     }
 
     private void purchaseSupplies() {
@@ -84,12 +84,12 @@ public class GameMenuView extends View {
       Game game = BlackbeardsDread.getCurrentGame();
       Inventory[] inventory = game.getInventory();
       
-      System.out.println("\n        LIST OF INVENTORY ITEMS");
+      this.console.println("\n        LIST OF INVENTORY ITEMS");
       line = new StringBuilder("                                     ");
       line.insert(0, "DESCRIPTION");
       line.insert(20, "REQUIRED");
       line.insert(30, "IN STOCK");
-      System.out.println(line.toString());
+      this.console.println(line.toString());
       
       for (Inventory item : inventory) {
           line = new StringBuilder("                                      ");
@@ -97,7 +97,7 @@ public class GameMenuView extends View {
           line.insert(23, item.getRequiredAmount());
           line.insert(33, item.getQuantityInStock());
           
-          System.out.println(line.toString());
+          this.console.println(line.toString());
       }
               
         
@@ -115,7 +115,7 @@ public class GameMenuView extends View {
     for( int column = 0; column < locations[0].length; column++){
       System.out.print("    " + column + "    |"); // print col numbers to side of map
     }
-    System.out.println();
+    this.console.println();
     for( int row = 0; row < locations.length; row++){
       System.out.print(row + " "); // print row numbers to side of map
       for( int column = 0; column < locations[row].length; column++){
@@ -135,10 +135,11 @@ public class GameMenuView extends View {
         else
           System.out.print(leftIndicator + locations[row][column].getScene().getMapSymbol() + rightIndicator);
       }
-      System.out.println("|");
+      this.console.println("|");
     }
   }catch (Exception e) {
     System.out.println("Error");
   }
     }
+
 }

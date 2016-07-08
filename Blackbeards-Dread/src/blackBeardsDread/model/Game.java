@@ -7,7 +7,7 @@ package blackBeardsDread.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+// 
 /**
  *
  * @author jkbry

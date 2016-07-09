@@ -8,7 +8,10 @@ package blackBeardsDread.View;
 import blackBeardsDread.model.Game;
 import blackBeardsDread.model.Inventory;
 import blackBeardsDread.model.Location;
+import blackBeardsDread.model.LocationScene;
+import blackBeardsDread.model.LocationScene.StoreType;
 import blackBeardsDread.model.Map;
+import blackBeardsDread.model.Scene;
 import blackbeards.dread.BlackbeardsDread;
 import java.util.Scanner;
 
@@ -69,9 +72,86 @@ public class GameMenuView extends View {
     }
 
     private void purchaseSupplies() {
-      
+       Game game = BlackbeardsDread.getCurrentGame();
+       Map map = game.getMap();
+       Location currentLocation = map.getCurrentLocation();
+       Location[][] locations = map.getLocations();
+       if (currentLocation == locations[0][0]) {
+           System.out.println("Purchase supplies is not available at this location");
+           return;
+       }
+       Scene scene = currentLocation.getScene();
+       LocationScene locationScene = scene.getLocationScene();
+       double storeType = locationScene.getStoreType();
+       String store;
+       if (storeType == 0) {
+          store = "\n"
+                  + "\n----------------------------"
+                  + "\n Dry Dock            "
+                  + "\n----------------------------"
+                  + "\n Price for 10 health"
+                  + "\n "+locationScene.getPrice()+" Pieces of Gold"
+                  + "\n"
+                  + "\n Confirm Purchase?"
+                  + "\nY - Yes"
+                  + "\nN - No"
+                  + "\n----------------------------";
+       } else if (storeType == 1) {
+           store = "\n"
+                  + "\n----------------------------"
+                  + "\n Food Store            "
+                  + "\n----------------------------"
+                  + "\n Price for 10 food"
+                  + "\n "+locationScene.getPrice()+" Pieces of Gold"
+                  + "\n"
+                  + "\n Confirm Purchase?"
+                  + "\nY - Yes"
+                  + "\nN - No"
+                  + "\n----------------------------";
+       } else if (storeType == 2) {
+           store = "\n"
+                  + "\n----------------------------"
+                  + "\n Water Store            "
+                  + "\n----------------------------"
+                  + "\n Price for 10 health"
+                  + "\n "+locationScene.getPrice()+" Pieces of Gold"
+                  + "\n"
+                  + "\n Confirm Purchase?"
+                  + "\nY - Yes"
+                  + "\nN - No"
+                  + "\n----------------------------";
+          
+       } else if (storeType == 3) {
+           store = "\n"
+                  + "\n----------------------------"
+                  + "\n Armory            "
+                  + "\n----------------------------"
+                  + "\n Price for 1 ship upgrade"
+                  + "\n "+locationScene.getPrice()+" Pieces of Gold"
+                  + "\n"
+                  + "\n Confirm Purchase?"
+                  + "\nY - Yes"
+                  + "\nN - No"
+                  + "\n----------------------------";
+       } else if (storeType == 4) {
+           store = "\n"
+                  + "\n----------------------------"
+                  + "\n Guild Hall            "
+                  + "\n----------------------------"
+                  + "\n Do a job and earn"
+                  + "\n "+locationScene.getPrice()+" Pieces of Gold"
+                  + "\n"
+                  + "\n Confirm?"
+                  + "\nY - Yes"
+                  + "\nN - No"
+                  + "\n----------------------------";
+       } else {
+           System.out.println("Purchase supplies is not available at this location");
+           return;
+       }
+       
 
-       PurchaseSupplies purchaseSupplies = new PurchaseSupplies("Water", 20);
+       PurchaseSupplies purchaseSupplies = new PurchaseSupplies(store, locationScene.getPrice(), storeType);
        purchaseSupplies.display();
        
     }

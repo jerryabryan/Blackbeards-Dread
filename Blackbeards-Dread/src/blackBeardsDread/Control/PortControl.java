@@ -6,6 +6,11 @@
 package blackBeardsDread.Control;
 
 import blackBeardsDread.Exceptions.PortControlException;
+import blackBeardsDread.model.Game;
+import blackBeardsDread.model.Inventory;
+import blackBeardsDread.model.Item;
+import blackBeardsDread.model.Ship;
+import blackbeards.dread.BlackbeardsDread;
 
 /**
  *
@@ -13,11 +18,25 @@ import blackBeardsDread.Exceptions.PortControlException;
  */
 public class PortControl {
 
-    public static void purchase(String store, int cost) {
-       System.out.println("startPuchase function called");
+    public static void purchase(double store, double cost) {
+        Game game = BlackbeardsDread.getCurrentGame();
+        Inventory[] inventory = game.getInventory();
+        double gold = inventory[Item.gold.ordinal()].getQuantityInStock();
+        if (store == 0) {
+           Ship ship = game.getShip();
+           double damage = ship.getDammage();
+           try {
+               PortControl.purchaseHealth(damage, gold, cost);
+           } catch ()
+           
+          
+       }
        
     }
     
+    public static void purchaseHealth(double damage, double gold, double cost) {
+        
+    }
     
     public void purchaseWater(double water, double gold, double desiredWater, double waterPrice) throws PortControlException {
         if (desiredWater < 0 || desiredWater > 10){
@@ -76,5 +95,9 @@ public class PortControl {
         }
         
     }
+
+ 
+
+   
 }
 

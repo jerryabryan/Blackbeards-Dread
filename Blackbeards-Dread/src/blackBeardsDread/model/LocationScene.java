@@ -5,11 +5,13 @@
  */
 package blackBeardsDread.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Evan
  */
-public class LocationScene {
+public class LocationScene implements Serializable  {
     public enum StoreType {
         dryDock,
         foodStore,

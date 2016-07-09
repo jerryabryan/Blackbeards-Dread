@@ -12,23 +12,13 @@ import blackBeardsDread.Control.PortControl;
  * @author Evan
  */
 public class PurchaseSupplies extends View {
-    private  String store;
-    private int cost;
+    private  double store;
+    private double cost;
 
-    PurchaseSupplies(String store, int cost) {
-        super("\n"
-                  + "\n----------------------------"
-                  + "\n  "+store+" Store           "
-                  + "\n----------------------------"
-                  + "\n Price for 10 Units"
-                  + "\n "+cost+" Pieces of Gold"
-                  + "\n"
-                  + "\n Purchase "+store+"?"
-                  + "\nY - Yes"
-                  + "\nN - No"
-                  + "\n----------------------------");
-        this.store = store;
+    PurchaseSupplies(String store, double cost, double storeType) {
+        super(store);
         this.cost = cost;
+        this.store = storeType;
     }
 
     @Override

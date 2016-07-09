@@ -5,11 +5,13 @@
  */
 package blackBeardsDread.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Evan
  */
-public class Scene {
+public class Scene implements Serializable{
     private LocationScene locationScene;
     private Battle battle;
     private String description;

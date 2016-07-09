@@ -5,11 +5,13 @@
  */
 package blackBeardsDread.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Evan
  */
-public enum Item {
+public enum Item implements Serializable{
     gold,
     food,
     water,

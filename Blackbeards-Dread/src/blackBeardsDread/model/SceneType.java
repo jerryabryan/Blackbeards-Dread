@@ -5,11 +5,13 @@
  */
 package blackBeardsDread.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Evan
  */
-public enum SceneType {
+public enum SceneType implements Serializable{
    
     finalBattle,
     dryDock1,

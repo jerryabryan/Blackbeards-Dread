@@ -29,7 +29,7 @@ public class InventoryView extends View {
     
     @Override
     public boolean doAction(String value) {
-        System.out.println("");
+        this.console.println("");
         
     return true;
     }

@@ -55,8 +55,8 @@ public abstract class View implements ViewInterface {
         boolean valid = false;
         
         while (!valid) {
-            System.out.println(this.displayMessage);
-            //System.out.println("\nSelect a Menu Option");
+            this.console.println(this.displayMessage);
+            //this.console.println("\nSelect a Menu Option");
             try {
                 value = this.keyboard.readLine();
             } catch (IOException ex) {

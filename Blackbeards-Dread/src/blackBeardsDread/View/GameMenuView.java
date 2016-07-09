@@ -5,6 +5,7 @@
  */
 package blackBeardsDread.View;
 
+import blackBeardsDread.Control.GameControl;
 import blackBeardsDread.model.Game;
 import blackBeardsDread.model.Inventory;
 import blackBeardsDread.model.Location;
@@ -13,13 +14,14 @@ import blackBeardsDread.model.LocationScene.StoreType;
 import blackBeardsDread.model.Map;
 import blackBeardsDread.model.Scene;
 import blackbeards.dread.BlackbeardsDread;
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  *
  * @author jkbry
  */
-public class GameMenuView extends View {
+public class GameMenuView extends View implements Serializable {
    
   
 
@@ -34,6 +36,7 @@ public class GameMenuView extends View {
                   + "\nC - Change Store"
                   + "\nP - Move Port Location"
                   + "\nI - Inventory"
+                  + "\nJ - Jerry's List"
                   + "\nQ - Back To Main Menu"
                   + "\n----------------------------");
     }
@@ -59,7 +62,10 @@ public class GameMenuView extends View {
                 break;
             case "I":
                 this.viewInventory();
-                break;    
+                break;
+            case "J":
+                this.jerryList();
+                break;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
         }
@@ -77,7 +83,7 @@ public class GameMenuView extends View {
        Location currentLocation = map.getCurrentLocation();
        Location[][] locations = map.getLocations();
        if (currentLocation == locations[0][0]) {
-           System.out.println("Purchase supplies is not available at this location");
+           this.console.println("Purchase supplies is not available at this location");
            return;
        }
        Scene scene = currentLocation.getScene();
@@ -146,7 +152,7 @@ public class GameMenuView extends View {
                   + "\nN - No"
                   + "\n----------------------------";
        } else {
-           System.out.println("Purchase supplies is not available at this location");
+           this.console.println("Purchase supplies is not available at this location");
            return;
        }
        
@@ -220,6 +226,43 @@ public class GameMenuView extends View {
   }catch (Exception e) {
     System.out.println("Error");
   }
+    }
+
+    private void jerryList() {
+        this.console.println("\n\nEnter the file path for where the List will be printed.");
+        
+        String filePath = this.getInput();
+        
+        StringBuilder line;
+      
+        Game game = BlackbeardsDread.getCurrentGame();
+        Inventory[] inventory = game.getInventory();
+      
+        this.console.println("\n        LIST OF INVENTORY ITEMS");
+        line = new StringBuilder("                                     ");
+        line.insert(0, "DESCRIPTION");
+        line.insert(20, "REQUIRED");
+        line.insert(30, "IN STOCK");
+        this.console.println(line.toString());
+      
+        for (Inventory item : inventory) {
+            line = new StringBuilder("                                      ");
+            line.insert(0, item.getInventoryType());
+            line.insert(23, item.getRequiredAmount());
+            line.insert(33, item.getQuantityInStock());
+          
+        this.console.println(line.toString());
+        }
+        
+        try {
+            GameControl.getSavedGame(filePath);
+        } 
+        catch (Exception ex) {
+            ErrorView.display("GameMenuView", ex.getMessage());
+        }
+        
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
     }
 
 }

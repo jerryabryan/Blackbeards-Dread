@@ -58,7 +58,7 @@ class HelpMenuView extends View {
     }
 
     private void goalOfGame() {
-        System.out.println("\n************************************************"
+        this.console.println("\n************************************************"
                          + "\n* The goal of the game is to prepare for your  *"
                          + "\n* final battle against Blackbeard. You have    *"
                          + "\n* to purchase supplies and ship upgrades along *"
@@ -68,7 +68,7 @@ class HelpMenuView extends View {
     }
 
     private void howToMove() {
-        System.out.println("\n************************************************"
+        this.console.println("\n************************************************"
                          + "\n* Move by simply selecting the menu option     *"
                          + "\n* that will take you to your desired location. *"
                          + "\n* However, be wary, if you venture too far     *"
@@ -78,7 +78,7 @@ class HelpMenuView extends View {
     }
 
     private void resourcesAvailable() {
-        System.out.println("\n************************************************"
+        this.console.println("\n************************************************"
                          + "\n* Resources available are water, food, and     *"
                          + "\n* weapon upgrades. Gold can can be used to     *"
                          + "\n* purchase these resources.                    *"
@@ -86,7 +86,7 @@ class HelpMenuView extends View {
     }
 
     private void howToUseResources() {
-        System.out.println("\n************************************************"
+        this.console.println("\n************************************************"
                          + "\n* Water and food are required for each journey *"
                          + "\n* to a new location, weapons are not. Remember *"
                          + "\n* to upgrade your ship. If you don't, you may  *"
@@ -96,7 +96,7 @@ class HelpMenuView extends View {
     }
 
     private void helpTips() {
-        System.out.println("\n************************************************"
+        this.console.println("\n************************************************"
                          + "\n* Don't forget to purchase your ship upgrades. *"
                          + "\n* If you don't have enough gold you can check  *"
                          + "\n* the Guild Hall for possible employment.      *"

@@ -105,8 +105,8 @@ public class MoveLocationView extends View{
                   + "\n " + fCost + "            " 
                   + "\n "
                   + "\n----------------------------";
-        System.out.println(banner);
-        System.out.println("Continue? (Y/N)");
+        this.console.println(banner);
+        this.console.println("Continue? (Y/N)");
         boolean done = false; // set flat to not done
         do {
             
@@ -130,7 +130,7 @@ public class MoveLocationView extends View{
            try {
            InventoryControl.checkTravelCost(wCost, fCost);
              } catch (InventoryControlException me) {
-                System.out.println(me.getMessage());
+                this.console.println(me.getMessage());
                 
                  if (me != null) {
                      return true;
@@ -157,12 +157,12 @@ public class MoveLocationView extends View{
            done = battle2.isDone();
            } while(!done);
            if (this.pShip.getDammage() >= this.pShip.getHealth()) {
-               System.out.println("You lost");
+               this.console.println("You lost");
                StartProgramView startProgramView = new StartProgramView();
                try {
                startProgramView.displayStartProgramView();
                } catch (Throwable te) {
-               System.out.println(te.getMessage());
+               this.console.println(te.getMessage());
                te.printStackTrace();
                startProgramView.displayStartProgramView();
                }    
@@ -174,7 +174,7 @@ public class MoveLocationView extends View{
 //            Scene sceneUpdate = currentLocation.getScene();
 //            Battle battleUpdate = sceneUpdate.getBattle();
 //            String description = sceneUpdate.getDescription();
-//            System.out.println("\n--------------------------------"
+//            this.console.println("\n--------------------------------"
 //                             + "\n   You have Arrived Saftely   "
 //                             + "\n   at " + description 
 //                             + "\n--------------------------------");
@@ -210,7 +210,7 @@ public class MoveLocationView extends View{
         
         while (!valid) {
            
-            System.out.println("\nSelect Y-Yes or N-NO");
+            this.console.println("\nSelect Y-Yes or N-NO");
             
             value = keyboard.nextLine();
             value = value.trim();

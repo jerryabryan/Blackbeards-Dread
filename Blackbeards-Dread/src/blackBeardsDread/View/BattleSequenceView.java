@@ -96,7 +96,7 @@ public class BattleSequenceView extends View{
             currentLocation.setScene(sceneUpdate);
             mapUpdate.setCurrentLocation(currentLocation);
             String description = sceneUpdate.getDescription();
-            System.out.println("\n--------------------------------"
+            this.console.println("\n--------------------------------"
                              + "\n   You have Arrived Saftely   "
                              + "\n   at " + description 
                              + "\n--------------------------------");
@@ -139,7 +139,7 @@ public class BattleSequenceView extends View{
             currentLocation.setScene(sceneUpdate);
             mapUpdate.setCurrentLocation(currentLocation);
             String description = sceneUpdate.getDescription();
-            System.out.println("\n--------------------------------"
+            this.console.println("\n--------------------------------"
                              + "\n   You have Arrived Saftely   "
                              + "\n   at " + description 
                              + "\n--------------------------------");
@@ -167,12 +167,12 @@ public class BattleSequenceView extends View{
         this.eShip.setDammage(enemyDammage);
         this.pShip.setDammage(playerDammage);
         if (this.pShip.getDammage() >= this.pShip.getHealth()) {
-               System.out.println("You lost");
+               this.console.println("You lost");
                StartProgramView startProgramView = new StartProgramView();
                try {
                startProgramView.displayStartProgramView();
                } catch (Throwable te) {
-               System.out.println(te.getMessage());
+               this.console.println(te.getMessage());
                te.printStackTrace();
                startProgramView.displayStartProgramView();
                }    

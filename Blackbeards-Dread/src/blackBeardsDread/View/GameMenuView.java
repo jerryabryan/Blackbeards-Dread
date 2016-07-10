@@ -255,9 +255,8 @@ public class GameMenuView extends View implements Serializable {
         }
         
         try {
-            GameControl.getSavedGame(filePath);
-        } 
-        catch (Exception ex) {
+            GameControl.saveGame(BlackbeardsDread.getCurrentGame(), filePath);
+        } catch (Exception ex) {
             ErrorView.display("GameMenuView", ex.getMessage());
         }
         

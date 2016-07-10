@@ -12,7 +12,9 @@ import blackBeardsDread.model.Location;
 import blackBeardsDread.model.LocationScene;
 import blackBeardsDread.model.LocationScene.StoreType;
 import blackBeardsDread.model.Map;
+import blackBeardsDread.model.Player;
 import blackBeardsDread.model.Scene;
+import blackBeardsDread.model.Ship;
 import blackbeards.dread.BlackbeardsDread;
 import java.io.Serializable;
 import java.util.Scanner;
@@ -37,6 +39,7 @@ public class GameMenuView extends View implements Serializable {
                   + "\nP - Move Port Location"
                   + "\nI - Inventory"
                   + "\nJ - Jerry's List"
+                  + "\nE - Evan's List"
                   + "\nQ - Back To Main Menu"
                   + "\n----------------------------");
     }
@@ -65,6 +68,9 @@ public class GameMenuView extends View implements Serializable {
                 break;
             case "J":
                 this.jerryList();
+                break;
+            case "E":
+                this.evanList();
                 break;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
@@ -262,6 +268,44 @@ public class GameMenuView extends View implements Serializable {
         
         GameMenuView gameMenu = new GameMenuView();
         gameMenu.display();
+    }
+    
+    private void evanList() {
+        this.console.println("\n\nEnter the file path for where the List will be printed.");
+        String filePath = this.getInput();
+        
+        StringBuilder line;
+      
+        Game game = BlackbeardsDread.getCurrentGame();
+        Player player = BlackbeardsDread.getPlayer();
+        Ship ship = game.getShip();
+        this.console.println("\n        LIST OF Players Ship Info");
+        line = new StringBuilder("                                      ");
+        line.insert(0, "Player's Name:");
+        line.insert(20, player.getName());
+        this.console.println(line.toString());
+        line = new StringBuilder("                                      ");
+        line.insert(0, "Max life:");
+        line.insert(20, ship.getHealth());
+        this.console.println(line.toString());
+        line = new StringBuilder("                                      ");
+        line.insert(0, "Damage to Ship:");
+        line.insert(20, ship.getDammage());
+        this.console.println(line.toString());
+        line = new StringBuilder("                                      ");
+        line.insert(0, "Weapon Strength");
+        line.insert(20, ship.getWeapons());
+        this.console.println(line.toString());
+        
+        try {
+            GameControl.saveGame(BlackbeardsDread.getCurrentGame(), filePath);
+        } catch (Exception ex) {
+            ErrorView.display("GameMenuView", ex.getMessage());
+        }
+        
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.display();
+        
     }
 
 }

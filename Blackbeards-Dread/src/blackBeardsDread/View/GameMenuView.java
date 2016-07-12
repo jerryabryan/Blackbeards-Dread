@@ -80,7 +80,16 @@ public class GameMenuView extends View implements Serializable {
     }
 
     private void changeStore() {
-        this.console.println("*** changeStore function called ***");
+        Game game = BlackbeardsDread.getCurrentGame();
+         Map map = game.getMap();
+         Location[][] locations = map.getLocations();
+         Location currentLocation = map.getCurrentLocation();
+         if (currentLocation == locations[0][0] || currentLocation == locations[6][0]) {
+             System.out.println("There are no Stores at this location");
+             return;
+         }
+        ChangeStoreView changeStoreView = new ChangeStoreView();
+        changeStoreView.display();
     }
 
     private void purchaseSupplies() {
@@ -113,7 +122,7 @@ public class GameMenuView extends View implements Serializable {
                   + "\n----------------------------"
                   + "\n Food Store            "
                   + "\n----------------------------"
-                  + "\n Price for 10 food"
+                  + "\n Price for 10 Food"
                   + "\n "+locationScene.getPrice()+" Pieces of Gold"
                   + "\n"
                   + "\n Confirm Purchase?"
@@ -125,7 +134,7 @@ public class GameMenuView extends View implements Serializable {
                   + "\n----------------------------"
                   + "\n Water Store            "
                   + "\n----------------------------"
-                  + "\n Price for 10 health"
+                  + "\n Price for 10 Water"
                   + "\n "+locationScene.getPrice()+" Pieces of Gold"
                   + "\n"
                   + "\n Confirm Purchase?"

@@ -34,6 +34,7 @@ public class PortControl {
                damage = PortControl.purchaseHealth(damage, gold, cost);
            } catch (PortControlException me) {
                 System.out.println(me.getMessage());
+                return;
            }
            gold = gold - cost;
            ship.setDammage(damage);
@@ -44,6 +45,7 @@ public class PortControl {
                 PortControl.purchaseFood(food, gold, 10, cost);
             } catch (PortControlException me) {
                 System.out.println(me.getMessage());
+                return;
             }
             gold = gold - cost;
             food = food + 10;
@@ -54,10 +56,29 @@ public class PortControl {
                 PortControl.purchaseWater(water, gold, 10, cost);
             } catch (PortControlException me) {
                 System.out.println(me.getMessage());
+                return;
             }
             gold = gold - cost;
             water = water + 10;
-            inventory[Item.food.ordinal()].setQuantityInStock(water);
+            inventory[Item.water.ordinal()].setQuantityInStock(water);
+        } else if (store == 3) {
+            Ship ship = game.getShip();
+           double weapons = ship.getWeapons();
+           try {
+               PortControl.purchaseWeapons(weapons, gold, cost);
+           } catch (PortControlException me) {
+                System.out.println(me.getMessage());
+                return;
+           }
+           gold = gold - cost;
+           weapons = weapons + 20;
+           double health = ship.getHealth();
+           health = health + 100;
+           ship.setHealth(health);
+           ship.setWeapons(weapons);
+           game.setShip(ship);
+        } else if (store == 4) {
+            gold = gold + cost;
         }
         inventory[Item.gold.ordinal()].setQuantityInStock(gold);
         game.setInventory(inventory);
@@ -90,7 +111,7 @@ public class PortControl {
                                          + "water or amounts over 10 units");
         }
         
-        if (gold < (desiredWater * waterPrice)) {
+        if (gold < (waterPrice)) {
             throw new PortControlException("You do not have enough gold to make "
                                          + "this purchase!");
         }
@@ -110,7 +131,7 @@ public class PortControl {
                                          + "food or amounts over 10 units");
         }
         
-        if (gold < (desiredFood * foodPrice)) {
+        if (gold < (foodPrice)) {
             throw new PortControlException("You do not have enough gold to make "
                                          + "this purchase!");
         }
@@ -123,6 +144,42 @@ public class PortControl {
         }
         
     }
+
+    private static void purchaseWeapons(double weapons, double gold, double cost) throws PortControlException{
+         Game game = BlackbeardsDread.getCurrentGame();
+        Map map = game.getMap();
+        Location[][] locations = map.getLocations();
+        Location currentLocation = map.getCurrentLocation();
+        Scene scene = currentLocation.getScene();
+        LocationScene locationScene = scene.getLocationScene();
+        boolean purchased = locationScene.getPurchased();
+        
+        if (purchased == true) {
+            throw new PortControlException("You have already purchase a ship upgrade from this locaiton");
+        
+        }
+        
+        if (gold < cost) {
+            throw new PortControlException("You do not have enough gold to make "
+                                         + "this purchase!");
+        }
+        
+        locationScene.setPurchased(true);
+        scene.setLocationScene(locationScene);
+        for( int row = 0; row < locations.length; row++){
+      for( int column = 0; column < locations[row].length; column++){
+          if (currentLocation == locations[row][column]) {
+              locations[row][column].setScene(scene);
+          }
+      }
+      }
+        currentLocation.setScene(scene);
+        map.setCurrentLocation(currentLocation);
+        map.setLocations(locations);
+        game.setMap(map);
+        BlackbeardsDread.setCurrentGame(game);
+    }
+    
     
     public void purchaseArmory(double weapons, double gold, double desiredWeapons, double weaponsPrice) throws PortControlException {
         if (desiredWeapons < 0 || desiredWeapons > 10){

@@ -86,6 +86,10 @@ public class MoveLocationView extends View{
         Map map = game.getMap();
         Location currentLocation = map.getCurrentLocation();
         this.currentLocation = MapControl.portToInt(currentLocation);
+        if (this.currentLocation == -1) {
+            System.out.println("you must be at a dry dock to change ports");
+            return;
+        }
         this.endLocation = i;
         if (this.currentLocation == i) {
             return;

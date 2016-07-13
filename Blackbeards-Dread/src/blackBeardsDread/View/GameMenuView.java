@@ -183,6 +183,11 @@ public class GameMenuView extends View implements Serializable {
       StringBuilder line;
       
       Game game = BlackbeardsDread.getCurrentGame();
+      Ship ship = game.getShip();
+      double health = ship.getHealth();
+      double damage = ship.getDammage();
+      double remainingHealth = health - damage;
+      String displayHealth = remainingHealth + " / " + health;
       Inventory[] inventory = game.getInventory();
       
       this.console.println("\n        LIST OF INVENTORY ITEMS");
@@ -200,7 +205,12 @@ public class GameMenuView extends View implements Serializable {
           
           this.console.println(line.toString());
       }
-              
+        line = new StringBuilder("                                      ");
+          line.insert(0, "Health");
+          line.insert(23, 0);
+          line.insert(33, displayHealth);
+          
+          this.console.println(line.toString());
         
         
       //  InventoryView InventoryView = new InventoryView();

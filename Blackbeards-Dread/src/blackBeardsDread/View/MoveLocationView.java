@@ -44,6 +44,7 @@ public class MoveLocationView extends View{
                   + "\n3 - Bahamas Port"
                   + "\n4 - Guadalajara Port"
                   + "\n5 - Florida Keys Port"
+                  + "\n6 - Blackbeard's Cove"
                   + "\nQ - Cancel "
                   + "\n----------------------------");
         
@@ -63,17 +64,20 @@ public class MoveLocationView extends View{
             case "1": 
                 this.setCourse(1);
                 return true;
-            case "2": //Load Saved Game
+            case "2": 
                 this.setCourse(2);
                 return true;
-            case "3": //Display Help Menu
+            case "3": 
                 this.setCourse(3);
                 return true;
-            case "4": //Save current game
-               this.setCourse(4);
+            case "4": 
+                this.setCourse(4);
                 return true;
-                case "5": //Save current game
-               this.setCourse(5);
+            case "5": 
+                this.setCourse(5);
+                return true;
+            case "6": 
+                this.setCourse(6);
                 return true;
             default:
                 System.out.println("\n*** Invalid Selection *** Try again");
@@ -140,6 +144,10 @@ public class MoveLocationView extends View{
                      return true;
                  }
              }
+           if (i == 6){
+               this.fightBlackbeard();
+               
+           }
            InventoryControl.deductSuppliesFromInventory(wCost, fCost);
            Location location = MapControl.intToPort(i);
            Scene Scene = location.getScene();
@@ -171,36 +179,9 @@ public class MoveLocationView extends View{
                startProgramView.displayStartProgramView();
                }    
            } else {
-//            Game gameUpdate = BlackbeardsDread.getCurrentGame();
-//            Map mapUpdate = gameUpdate.getMap();
-//            Location[][] locations = mapUpdate.getLocations();
-//            Location currentLocation = mapUpdate.getCurrentLocation();
-//            Scene sceneUpdate = currentLocation.getScene();
-//            Battle battleUpdate = sceneUpdate.getBattle();
-//            String description = sceneUpdate.getDescription();
-//            this.console.println("\n--------------------------------"
-//                             + "\n   You have Arrived Saftely   "
-//                             + "\n   at " + description 
-//                             + "\n--------------------------------");
-//            double reward = battleUpdate.getReward();
-//            Inventory[] inventory = gameUpdate.getInventory();
-//            if (currentLocation == locations[0][0]) {
-//                if (inventory[Item.food.ordinal()].getQuantityInStock() < 20) {
-//                inventory[Item.food.ordinal()].setQuantityInStock(20);
-//                } 
-//            if (inventory[Item.water.ordinal()].getQuantityInStock() < 20) {
-//                inventory[Item.water.ordinal()].setQuantityInStock(20);
-//                 }}
-//            double gold = inventory[Item.gold.ordinal()].getQuantityInStock();
-//            double newGold = gold + reward;
-//            inventory[Item.gold.ordinal()].setQuantityInStock(newGold);
-//            gameUpdate.setInventory(inventory);
-//            BlackbeardsDread.setCurrentGame(gameUpdate);
-            
-               
-           
-           return true;
-       }
+
+                return true;
+            }
        } else {
            return false;
         }
@@ -230,6 +211,56 @@ public class MoveLocationView extends View{
         return value;
     }
 
-    
+    private void fightBlackbeard() {
+        Location location = MapControl.intToPort(6);
+        Scene scene = location.getScene();
+        Battle battle = scene.getBattle();
+        this.console.println("\n****------------------------------------------****"
+                           + "\n***   You have entered Blackbeard's Cove to    ***"
+                           + "\n***  challenge him as the most feared pirate!  ***"
+                           + "\n****------------------------------------------****");
+        
+        boolean done = false;
+        this.eShip = battle.getEnemyShip();
+        Game game = BlackbeardsDread.getCurrentGame();
+        game.seteShip(this.eShip);
+        BlackbeardsDread.setCurrentGame(game);
+        this.pShip = game.getShip();
+        
+        do {
+            BattleSequenceView battleSequenceView = new BattleSequenceView(location);
+            battleSequenceView.display();
+            Game game2 = BlackbeardsDread.getCurrentGame();
+            Map map2 =game2.getMap();
+            Location location2 = map2.getCurrentLocation();
+            Scene scene2 = location2.getScene();
+            Battle battle2 = scene2.getBattle();
+            done = battle2.isDone();
+        }
+        
+        while(!done);
+            if (this.pShip.getDammage() >= this.pShip.getHealth()) {
+                this.console.println("You lost");
+                StartProgramView startProgramView = new StartProgramView();
+                
+                try {
+                startProgramView.displayStartProgramView();
+                }
+                catch (Throwable te) {
+                this.console.println(te.getMessage());
+                te.printStackTrace();
+                startProgramView.displayStartProgramView();
+                }    
+            }
+                else {
+                    this.console.println("\n**************************************************"
+                                       + "\n***       You have defeated Blackbeard!        ***"
+                                       + "\n***  You are now the most fearsome pirate in   ***"
+                                       + "\n***               the Seven Seas!              ***"
+                                       + "\n**************************************************");
+                
+                    return;
+                }
+    } 
 
 }

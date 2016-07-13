@@ -287,7 +287,7 @@ public class MapControl {
         scenes[SceneType.guildHall5.ordinal()] = floridaKeysGuildHall;
         
         Scene finalBattle = new Scene();
-        finalBattle.setDescription("You are now Fighting BlackBeard");
+        finalBattle.setDescription("Blackbeard's Cove");
         Battle battle6 = new Battle(1000000, 500, 120, ShipType.blackbeard.ordinal());
         finalBattle.setBattle(battle6);
         finalBattle.setLocationScene(null);
